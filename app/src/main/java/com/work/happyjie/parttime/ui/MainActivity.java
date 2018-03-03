@@ -33,11 +33,11 @@ import java.util.List;
  * Created by llj on 2017/12/7.
  */
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
-    private ImageView btnMenu, btnGank, btnMusic, btnDouban;
+    private LayoutSlideMenuBinding slideMenuBinding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     protected void initView() {
         super.initView();
         showContentView();
-        setToolbarVisible(false);
         initViewId();
         initDrawerLayout();
         initContentView();
@@ -61,40 +60,28 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     @Override
     protected void initListener() {
         super.initListener();
-        btnMenu.setOnClickListener(this);
-        btnGank.setOnClickListener(this);
-        btnMusic.setOnClickListener(this);
-        btnDouban.setOnClickListener(this);
+
     }
 
     private void initViewId() {
         drawerLayout = mViewBinding.drawerLayout;
         navigationView = mViewBinding.navView;
-        btnMenu = mViewBinding.toolBar.ivTitleMenu;
-        btnGank = mViewBinding.toolBar.ivTitleGank;
-        btnMusic = mViewBinding.toolBar.ivTitleMusic;
-        btnDouban = mViewBinding.toolBar.ivTitleDouban;
+    }
+
+    @Override
+    protected int getToolBarLeftIcon() {
+        return R.drawable.titlebar_menu;
+    }
+
+    @Override
+    protected View.OnClickListener getToolBarLeftIconClickListener() {
+        return v -> drawerLayout.openDrawer(GravityCompat.START);
     }
 
     private void initContentView() {
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new GankFragment());
-        fragmentList.add(new NewsFragment());
-        fragmentList.add(new DoubanFragment());
-        List<String> titleList = new ArrayList<>();
-        titleList.add("干货");
-        titleList.add("音乐");
-        titleList.add("豆瓣");
 
-        MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
-        mViewBinding.vpContent.setAdapter(pagerAdapter);
-        mViewBinding.vpContent.setOffscreenPageLimit(3);    //设置ViewPager预加载的页面个数
-        mViewBinding.toolBar.ivTitleGank.setSelected(true);
-        mViewBinding.vpContent.setCurrentItem(0);
-        mViewBinding.vpContent.addOnPageChangeListener(this);
     }
 
-    private LayoutSlideMenuBinding slideMenuBinding;
 
     /**
      * inflateHeaderView 进来的布局要宽一些
@@ -138,25 +125,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         }
     };
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_title_menu:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
-            case R.id.iv_title_gank:
-                mViewBinding.vpContent.setCurrentItem(0);
-                break;
-            case R.id.iv_title_music:
-                mViewBinding.vpContent.setCurrentItem(1);
-                break;
-            case R.id.iv_title_douban:
-                mViewBinding.vpContent.setCurrentItem(2);
-                break;
-            default:
-                break;
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -180,31 +148,5 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        ImageView[] ivs = new ImageView[]{btnGank, btnMusic, btnDouban};
-
-        if(position >= ivs.length){
-            Logger.e("viewPager 越界, position = " + position);
-            return;
-        }
-
-        for(ImageView iv : ivs){
-            iv.setSelected(false);
-        }
-
-        ivs[position].setSelected(true);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 }

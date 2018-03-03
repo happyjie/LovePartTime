@@ -14,7 +14,17 @@
             android:background="@color/colorTheme"
             android:contentInsetStart="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ToolbarStyle" />
+            app:theme="@style/ToolbarStyle" >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textBigColorWhite"
+                android:gravity="center"
+                android:text="居中标题"/>
+
+        </android.support.v7.widget.Toolbar>
 
         <!--app:layout_scrollFlags="enterAlways|scroll"-->
 

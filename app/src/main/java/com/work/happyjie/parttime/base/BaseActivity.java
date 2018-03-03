@@ -102,14 +102,10 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
             //去除默认Title显示
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.icon_back);
+            actionBar.setHomeAsUpIndicator(getToolBarLeftIcon());
         }
-        mBaseBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
+        mBaseBinding.toolBar.setNavigationOnClickListener(getToolBarLeftIconClickListener());
     }
 
     /**
@@ -120,6 +116,34 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         mBaseBinding.toolBar.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
+    /**
+     * 显示标题栏左侧标题，默认是返回按钮
+     * @return
+     */
+    protected int getToolBarLeftIcon(){
+        return R.drawable.icon_back;
+    }
+
+    /**
+     * 设置标题栏左侧按钮的点击事件 默认是返回键
+     * @return
+     */
+    protected View.OnClickListener getToolBarLeftIconClickListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        };
+    }
+
+    /**
+     * 居中标题设置
+     * @param title
+     */
+    protected void setTitle(String title){
+        mBaseBinding.tvTitle.setText(title);
+    }
 
     public void setTitle(CharSequence text) {
         mBaseBinding.toolBar.setTitle(text);
