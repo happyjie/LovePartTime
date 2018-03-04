@@ -129,12 +129,12 @@
     <style name="horizontal_divide_line_2px">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2px</item>
-        <item name="android:background">@color/line_gray</item>
+        <item name="android:background">@color/divide_line</item>
     </style>
     <style name="vertical_divide_line_2px">
         <item name="android:layout_width">2px</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/line_gray</item>
+        <item name="android:background">@color/divide_line</item>
     </style>
     <!--end of 分割线-->
 </resources>

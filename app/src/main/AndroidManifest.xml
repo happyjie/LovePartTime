@@ -36,14 +36,18 @@
             android:screenOrientation="portrait"
             android:label="显示大图界面"/>
 
-        <activity android:name="com.work.happyjie.parttime.ui.news.NewsDetailActivity"
+        <activity android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
-            android:label="新闻详情"/>
-        <activity android:name="com.work.happyjie.parttime.tools.webview.WebViewActivity"
-            android:screenOrientation="portrait"
-            android:label="网页"/>
-        <activity android:name="com.work.happyjie.parttime.ui.joke.JokeDetailActivity"
-            android:screenOrientation="portrait"/>
+            android:launchMode="singleTask"/>
+
+        <!--<activity android:name="com.work.happyjie.parttime.ui.news.NewsDetailActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:label="新闻详情"/>-->
+        <!--<activity android:name="com.work.happyjie.parttime.tools.webview.WebViewActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:label="网页"/>-->
+        <!--<activity android:name="com.work.happyjie.parttime.ui.joke.JokeDetailActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
     </application>
 
 </manifest>

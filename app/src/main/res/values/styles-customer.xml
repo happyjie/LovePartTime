@@ -8,8 +8,8 @@
         <item name="android:textColor">@color/color63</item>
         <item name="android:textSize">@dimen/textSizeBig</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:drawablePadding">15dp</item>
-        <item name="android:paddingTop">15dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:paddingTop">10dp</item>
         <item name="android:background">@drawable/selector_bg_white</item>
     </style>
 

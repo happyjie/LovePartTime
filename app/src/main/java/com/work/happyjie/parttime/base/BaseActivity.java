@@ -89,7 +89,6 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
     }
 
     protected void initListener(){
-
     }
 
     /**
@@ -101,7 +100,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         if (actionBar != null) {
             //去除默认Title显示
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(isShowBackButton());
             actionBar.setHomeAsUpIndicator(getToolBarLeftIcon());
         }
 
@@ -114,6 +113,10 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
      */
     protected void setToolbarVisible(boolean visible){
         mBaseBinding.toolBar.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    protected boolean isShowBackButton(){
+        return true;
     }
 
     /**
@@ -141,7 +144,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
      * 居中标题设置
      * @param title
      */
-    protected void setTitle(String title){
+    protected void setCenterTitle(String title){
         mBaseBinding.tvTitle.setText(title);
     }
 

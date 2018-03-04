@@ -1,35 +1,35 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
 	package
-		ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:11-52
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+		ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:11-52
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml:2:1-4:12
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
 uses-sdk
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		ADDED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
-		INJECTED from D:\workspace\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		ADDED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
+		INJECTED from F:\workspace\android\LovePartTime\photoview\src\main\AndroidManifest.xml
