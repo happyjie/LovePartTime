@@ -15,7 +15,7 @@ import com.work.happyjie.parttime.base.BaseFragment;
 import com.work.happyjie.parttime.bean.NewsDataResult;
 import com.work.happyjie.parttime.cache.UserCacheWrapper;
 import com.work.happyjie.parttime.databinding.FragmentClassificationNewsBinding;
-import com.work.happyjie.parttime.helper.ObservableHelper;
+import com.work.happyjie.parttime.helper.RxTools;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.model.NewsRequestModel;
 import com.work.happyjie.parttime.tools.webview.WebViewActivity;
@@ -24,7 +24,7 @@ import com.work.happyjie.parttime.utils.ToastUtils;
 
 import java.util.List;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2017/12/15.
@@ -148,7 +148,7 @@ public class ClassificationNewsFragment extends BaseFragment<FragmentClassificat
                     }
                 }
 
-                ObservableHelper.simpleEvent(getContext(), bean, new ObservableHelper.simpleEventCallBack<NewsDataResult>() {
+                RxTools.simpleEvent(getContext(), bean, new RxTools.simpleEventCallBack<NewsDataResult>() {
                     @Override
                     public void doSomething(NewsDataResult result) {
                         UserCacheWrapper.saveNewsCache(getContext(), new String[]{mCategory}, bean);
@@ -172,8 +172,8 @@ public class ClassificationNewsFragment extends BaseFragment<FragmentClassificat
             }
 
             @Override
-            public void returnSubscription(Subscription subscription) {
-                addSubscription(subscription);
+            public void returnSubscription(Disposable disposable) {
+                addSubscription(disposable);
             }
         });
     }

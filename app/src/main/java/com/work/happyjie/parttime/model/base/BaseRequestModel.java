@@ -3,11 +3,14 @@ package com.work.happyjie.parttime.model.base;
 import com.orhanobut.logger.Logger;
 import com.work.happyjie.parttime.http.RequestCallBack;
 
-import rx.Observable;
-import rx.Observer;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import org.reactivestreams.Subscription;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by llj on 2017/12/13.
@@ -16,17 +19,21 @@ import rx.schedulers.Schedulers;
 public abstract class BaseRequestModel {
 
     protected  <T> void request(Observable<T> observable, RequestCallBack<T> callBack) {
-        Subscription subscription = observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<T>() {
-                    @Override
-                    public void onCompleted() {
-                        Logger.d("onCompleted()");
-                    }
 
                     @Override
                     public void onError(Throwable e) {
-                        Logger.e(e.getMessage(), "onError()");
                         callBack.onError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        callBack.returnSubscription(d);
                     }
 
                     @Override
@@ -35,6 +42,5 @@ public abstract class BaseRequestModel {
                         callBack.onSuccess(t);
                     }
                 });
-        callBack.returnSubscription(subscription);
     }
 }

@@ -7,10 +7,10 @@ import com.work.happyjie.parttime.bean.JokeListResult;
 import com.work.happyjie.parttime.bean.NewsDataResult;
 import com.work.happyjie.parttime.http.HttpUtils;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by llj on 2017/12/13.

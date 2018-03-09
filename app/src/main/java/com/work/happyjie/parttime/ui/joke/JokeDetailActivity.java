@@ -22,7 +22,7 @@ import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.model.JokeCommentRequestModel;
 import com.work.happyjie.parttime.ui.joke.adapter.JokeCommentAdapter;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2018/1/5.
@@ -137,8 +137,8 @@ public class JokeDetailActivity extends BaseActivity<ActivityJokeDetailBinding> 
             }
 
             @Override
-            public void returnSubscription(Subscription subscription) {
-                addSubscription(subscription);
+            public void returnSubscription(Disposable disposable) {
+                addSubscription(disposable);
             }
         });
     }

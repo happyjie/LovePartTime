@@ -1,6 +1,6 @@
 package com.work.happyjie.parttime.http;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2017/12/13.
@@ -11,5 +11,5 @@ public interface RequestCallBack<T> {
 
     void onError(Throwable throwable);
 
-    void returnSubscription(Subscription subscription);
+    void returnSubscription(Disposable subscription);
 }

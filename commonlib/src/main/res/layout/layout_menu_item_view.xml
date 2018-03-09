@@ -28,7 +28,6 @@
         tools:text="菜单项1"/>
 
 
-
     <ImageView
         android:id="@+id/iv_red_point"
         android:layout_width="6dp"

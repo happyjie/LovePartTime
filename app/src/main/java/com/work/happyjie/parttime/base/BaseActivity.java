@@ -21,8 +21,9 @@ import com.lib.llj.utils.StatusBarUtil;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.databinding.ActivityBaseBinding;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * Created by llj on 2017/12/8.
@@ -34,7 +35,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
     protected LinearLayout llLoading;
     protected LinearLayout llError;
     protected AnimationDrawable mAnimationDrawable;
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     protected DangerousPermissionUtils permissionUtil;
 
@@ -218,24 +219,24 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         return (V) findViewById(id);
     }
 
-    public void addSubscription(Subscription s) {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
+    public void addSubscription(Disposable disposable) {
+        if (this.mCompositeDisposable == null) {
+            this.mCompositeDisposable = new CompositeDisposable();
         }
-        this.mCompositeSubscription.add(s);
+        this.mCompositeDisposable.add(disposable);
     }
 
-    public void removeSubscription(Subscription s) {
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.remove(s);
+    public void removeSubscription(Disposable disposable) {
+        if (this.mCompositeDisposable != null) {
+            this.mCompositeDisposable.remove(disposable);
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.unsubscribe();
+        if (this.mCompositeDisposable != null) {
+            this.mCompositeDisposable.clear();
         }
     }
 }

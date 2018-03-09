@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="com.android.support:design-25.0.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-25.0.0.aar/7fa0aae8c45c7e06a0e8048f1b425c49/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-25.0.0.aar/7fa0aae8c45c7e06a0e8048f1b425c49/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-25.0.0.aar/f97bcd6cf2d252cacdb2c641c3bee662/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-25.0.0.aar/f97bcd6cf2d252cacdb2c641c3bee662/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/sdk/extras/android/m2repository/com/android/support/design/25.0.0/design-25.0.0-javadoc.jar!/" />
+      <root url="jar://D:/android_sdk/extras/android/m2repository/com/android/support/design/25.0.0/design-25.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/sdk/extras/android/m2repository/com/android/support/design/25.0.0/design-25.0.0-sources.jar!/" />
+      <root url="jar://D:/android_sdk/extras/android/m2repository/com/android/support/design/25.0.0/design-25.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

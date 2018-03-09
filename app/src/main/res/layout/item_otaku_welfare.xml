@@ -15,7 +15,6 @@
         android:layout_marginBottom="6dp"
         android:scaleType="centerCrop"
         android:showAdapterImage="@{bean.url}"
-        android:defaultImageType="@{1}">
+        android:defaultImageType="@{1}"/>
 
-    </ImageView>
 </layout>

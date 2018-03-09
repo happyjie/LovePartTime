@@ -25,7 +25,7 @@ import com.work.happyjie.parttime.utils.SharedPreferenceUtils;
 
 import java.util.List;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2018/1/3.
@@ -169,8 +169,8 @@ public class JokeListFragment extends BaseFragment<FragmentJokeListBinding>{
             }
 
             @Override
-            public void returnSubscription(Subscription subscription) {
-                addSubscription(subscription);
+            public void returnSubscription(Disposable disposable) {
+                addSubscription(disposable);
             }
         });
     }
@@ -196,7 +196,7 @@ public class JokeListFragment extends BaseFragment<FragmentJokeListBinding>{
             }
 
             @Override
-            public void returnSubscription(Subscription subscription) {
+            public void returnSubscription(Disposable subscription) {
                 addSubscription(subscription);
             }
         });

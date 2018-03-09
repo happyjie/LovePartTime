@@ -17,8 +17,8 @@ import com.lib.llj.utils.SingleClickListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.databinding.FragmentBaseBinding;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2017-12-11 .
@@ -30,7 +30,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
     protected LinearLayout llLoading;
     protected LinearLayout llError;
     protected AnimationDrawable mAnimationDrawable;
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     // fragment是否显示了
     protected boolean mIsVisible = false;
@@ -181,24 +181,24 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
         return (T) getView().findViewById(id);
     }
 
-    public void addSubscription(Subscription s) {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
+    public void addSubscription(Disposable disposable) {
+        if (this.mCompositeDisposable == null) {
+            this.mCompositeDisposable = new CompositeDisposable();
         }
-        this.mCompositeSubscription.add(s);
+        this.mCompositeDisposable.add(disposable);
     }
 
-    public void removeSubscription(Subscription s) {
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.remove(s);
+    public void removeSubscription(Disposable s) {
+        if (this.mCompositeDisposable != null) {
+            this.mCompositeDisposable.remove(s);
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.unsubscribe();
+        if (this.mCompositeDisposable != null) {
+            this.mCompositeDisposable.clear();
         }
     }
 }

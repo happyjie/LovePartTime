@@ -41,12 +41,6 @@ public class NetworkUtils {
 		typeList.add("获取当前的网络类型");
 		typeList.add("获取当前的网络类型(WIFI,2G,3G,4G)");
 
-
-
-
-
-
-
 	}
 	/**
 	 * 打开网络设置界面

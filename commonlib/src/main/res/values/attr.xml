@@ -18,6 +18,15 @@
         <attr name="background" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="KeyValueItemView">
+        <attr name="key" format="string"/>
+        <attr name="value" format="string"/>
+        <attr name="keyTextSize" format="dimension"/>
+        <attr name="keyTextColor" format="color"/>
+        <attr name="valueTextSize" format="dimension"/>
+        <attr name="valueTextColor" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="ClearEditText">
         <attr name="drawableLeft" format="integer"/>
     </declare-styleable>

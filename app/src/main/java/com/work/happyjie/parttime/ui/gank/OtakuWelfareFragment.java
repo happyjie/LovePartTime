@@ -23,7 +23,7 @@ import com.work.happyjie.parttime.utils.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2017/12/12.
@@ -138,8 +138,8 @@ public class OtakuWelfareFragment extends BaseFragment<FragmentOtakuWelfareBindi
             }
 
             @Override
-            public void returnSubscription(Subscription subscription) {
-                addSubscription(subscription);
+            public void returnSubscription(Disposable disposable) {
+                addSubscription(disposable);
             }
         });
     }
