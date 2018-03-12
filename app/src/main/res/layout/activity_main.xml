@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+    </data>
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -48,18 +54,21 @@
                             android:id="@+id/tv_incoming_detail"
                             style="@style/home_btn"
                             android:drawableTop="@drawable/ic_home_incoming_detail"
+                            android:onClick="@{clickListener.onClick}"
                             android:text="收入明细" />
 
                         <TextView
                             android:id="@+id/tv_finance_info"
                             style="@style/home_btn"
                             android:drawableTop="@drawable/ic_home_finance_info"
+                            android:onClick="@{clickListener.onClick}"
                             android:text="财务信息" />
 
                         <TextView
                             android:id="@+id/tv_task_list"
                             style="@style/home_btn"
                             android:drawableTop="@drawable/ic_home_task_list"
+                            android:onClick="@{clickListener.onClick}"
                             android:text="任务列表" />
 
                     </LinearLayout>
@@ -70,22 +79,25 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_person_info"
+                            style="@style/home_btn"
+                            android:drawableTop="@drawable/ic_home_incoming_detail"
+                            android:onClick="@{clickListener.onClick}"
+                            android:text="个人资料" />
+
+                        <TextView
                             android:id="@+id/tv_read_me"
                             style="@style/home_btn"
                             android:drawableTop="@drawable/ic_home_read_me"
+                            android:onClick="@{clickListener.onClick}"
                             android:text="新手教学" />
 
                         <TextView
                             android:id="@+id/tv_contact_us"
                             style="@style/home_btn"
                             android:drawableTop="@drawable/ic_home_contact_us"
+                            android:onClick="@{clickListener.onClick}"
                             android:text="联系我们" />
-
-                        <TextView
-                            android:id="@+id/tv_more"
-                            style="@style/home_btn"
-                            android:drawableTop="@drawable/ic_home_incoming_detail"
-                            android:text="更多" />
 
                     </LinearLayout>
 

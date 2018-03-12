@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="menuClickListener"
+            type="com.lib.llj.utils.SingleClickListener"/>
+
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,6 +68,7 @@
                     app:icon_res_id="@drawable/ic_nav_homepage"
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
+                    android:onClick="@{menuClickListener.onClick}"
                     app:menu_title="回到首页"/>
 
                 <com.lib.llj.widget.MenuItemView
@@ -70,6 +78,7 @@
                     app:icon_res_id="@drawable/ic_nav_deedback"
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
+                    android:onClick="@{menuClickListener.onClick}"
                     app:menu_title="问题反馈"/>
 
                 <com.lib.llj.widget.MenuItemView
@@ -79,6 +88,7 @@
                     app:icon_res_id="@drawable/ic_nav_scan"
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
+                    android:onClick="@{menuClickListener.onClick}"
                     app:menu_title="应用推荐"/>
 
                 <View style="@style/horizontal_divide_line_2px"/>
@@ -90,6 +100,7 @@
                     app:icon_res_id="@drawable/ic_nav_login"
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
+                    android:onClick="@{menuClickListener.onClick}"
                     app:menu_title="关于我们"/>
 
                 <com.lib.llj.widget.MenuItemView
@@ -99,6 +110,7 @@
                     app:icon_res_id="@drawable/ic_nav_exit"
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
+                    android:onClick="@{menuClickListener.onClick}"
                     app:menu_title="退出应用"/>
 
             </LinearLayout>

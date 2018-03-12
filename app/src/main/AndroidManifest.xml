@@ -40,6 +40,9 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
 
+        <activity android:name=".ui.parttime.person_info.PersonInfoActivity"
+            android:screenOrientation="portrait"/>
+
         <!--<activity android:name="com.work.happyjie.parttime.ui.news.NewsDetailActivity"-->
             <!--android:screenOrientation="portrait"-->
             <!--android:label="新闻详情"/>-->

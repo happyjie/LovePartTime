@@ -19,6 +19,7 @@ import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
+import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
 import com.work.happyjie.parttime.utils.ToastUtils;
 
 /**
@@ -57,12 +58,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     @Override
     protected void initListener() {
         super.initListener();
-        mViewBinding.tvIncomingDetail.setOnClickListener(this);
+        /*mViewBinding.tvIncomingDetail.setOnClickListener(this);
         mViewBinding.tvFinanceInfo.setOnClickListener(this);
         mViewBinding.tvContactUs.setOnClickListener(this);
         mViewBinding.tvTaskList.setOnClickListener(this);
         mViewBinding.tvReadMe.setOnClickListener(this);
-        mViewBinding.tvMore.setOnClickListener(this);
+        mViewBinding.tvPersonInfo.setOnClickListener(this);*/
+
+        mViewBinding.setClickListener(this);
 
         mViewBinding.switchHome.setOnCheckedChangeListener((buttonView, isChecked)
                 -> mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED));
@@ -109,14 +112,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         navigationView.inflateHeaderView(R.layout.layout_slide_menu);
         View headerView = navigationView.getHeaderView(0);
         slideMenuBinding = DataBindingUtil.bind(headerView);
+        slideMenuBinding.setMenuClickListener(listener);
 
 //        GlideUtils.showAvatar(slideMenuBinding.ivAvatar, "");
 //        slideMenuBinding.ivAvatar.setOnClickListener(listener);
-        slideMenuBinding.menuGoHome.setOnClickListener(listener);
+        /*slideMenuBinding.menuGoHome.setOnClickListener(listener);
         slideMenuBinding.menuAppRecommend.setOnClickListener(listener);
         slideMenuBinding.menuFeedback.setOnClickListener(listener);
         slideMenuBinding.menuAboutUs.setOnClickListener(listener);
-        slideMenuBinding.menuExit.setOnClickListener(listener);
+        slideMenuBinding.menuExit.setOnClickListener(listener);*/
     }
 
     private SingleClickListener listener = new SingleClickListener() {
@@ -135,12 +139,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
                         break;
                     case R.id.menu_exit:
                         break;
+
                 }
 
                 if (v instanceof MenuItemView) {
                     Toast.makeText(MainActivity.this, ((MenuItemView) v).getMenuTitle(), Toast.LENGTH_SHORT).show();
                 }
-            }, 200);
+            }, 50);
         }
     };
 
@@ -183,8 +188,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
                 break;
             case R.id.tv_contact_us:
                 break;
-            case R.id.tv_more:
-                ToastUtils.showToast("暂未开放，敬请期待！");
+            case R.id.tv_person_info:
+                startActivity(new Intent(this, PersonInfoActivity.class));
                 break;
         }
     }
