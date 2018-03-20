@@ -22,6 +22,8 @@ import com.work.happyjie.parttime.http.response.LoginResponse;
 
 import java.util.Random;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * Created by llj on 2017/12/7.
  */
@@ -33,12 +35,15 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mCompositeDisposable = new CompositeDisposable();
         setContentView(R.layout.activity_splash);
     }
 
 
     @Override
     protected void initView() {
+        showContentView();
+
         // 先显示默认图
         mViewBinding.ivDefaultPic.setImageResource(R.drawable.img_splash_default);
 

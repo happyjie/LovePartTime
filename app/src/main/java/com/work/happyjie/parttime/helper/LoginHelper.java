@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.lib.llj.utils.SharedPreferencesUtils;
 import com.lib.llj.utils.ToastUtils;
+import com.work.happyjie.parttime.BuildConfig;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.LoginRequestModel;
@@ -12,12 +13,20 @@ import com.work.happyjie.parttime.http.response.LoginResponse;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
+
 /**
  * Created by llj on 2018/3/20.
  */
 
 public class LoginHelper {
     public static void login(CompositeDisposable compositeDisposable, String account, String password, LoginCallBack callBack){
+        if(BuildConfig.DEBUG){
+            if(null == compositeDisposable){
+                ToastUtils.showShort("请先初始化compositeDisposable");
+                return;
+            }
+        }
+
 
         if(TextUtils.isEmpty(account)){
             ToastUtils.showShort("请输入账号");
@@ -48,13 +57,13 @@ public class LoginHelper {
                 SharedPreferencesUtils.putBoolean(PreferenceConsts.LOGIN_STATUS, true);
 
                 //保存联系我们的相关信息
-                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_PHONE, result.getAdminList().getTelephone());
-                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_QQ, result.getAdminList().getQqnum());
-                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_WECHAT, result.getAdminList().getChartnum());
-                SharedPreferencesUtils.putString(PreferenceConsts.COMPANY_ADDRESS, result.getAdminList().getAddress());
+                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_PHONE, result.getAdmin().getTelephone());
+                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_QQ, result.getAdmin().getQqnum());
+                SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_WECHAT, result.getAdmin().getChartnum());
+                SharedPreferencesUtils.putString(PreferenceConsts.COMPANY_ADDRESS, result.getAdmin().getAddress());
 
                 //保存用户详细信息
-                UserInfoHelper.getInstance().saveUserInfo(result.getUserList());
+                UserInfoHelper.getInstance().saveUserInfo(result.getUser());
 
                 if(callBack != null){
                     callBack.loginResult(true, result);

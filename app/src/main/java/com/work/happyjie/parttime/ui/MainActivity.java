@@ -11,13 +11,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.lib.llj.utils.SharedPreferencesUtils;
 import com.lib.llj.utils.SingleClickListener;
 import com.lib.llj.utils.StatusBarUtil;
 import com.lib.llj.widget.MenuItemView;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
+import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
+import com.work.happyjie.parttime.http.request.GetFinanceInfoRequestModel;
+import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
+import com.work.happyjie.parttime.http.request.GetIncomingDetailRequestModel;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
 
 /**
@@ -51,6 +56,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
 
         StatusBarUtil.setColorNoTranslucentForDrawerLayout(MainActivity.this, drawerLayout,
                 getResources().getColor(R.color.colorTheme));
+
+
+        GetHomeDataRequestModel model = new GetHomeDataRequestModel(
+                SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT));
+        model.getHomeData(null);
     }
 
     @Override
@@ -175,9 +185,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_incoming_detail:
-                startActivity(new Intent(this, LoginActivity.class));
+//                startActivity(new Intent(this, LoginActivity.class));
+
+                GetIncomingDetailRequestModel model = new GetIncomingDetailRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
+                        "2018", "3",30);
+                model.getData(null);
+
                 break;
             case R.id.tv_finance_info:
+                GetFinanceInfoRequestModel model2 = new GetFinanceInfoRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
+                        "2018", "3",30);
+                model2.getData(null);
+
                 break;
             case R.id.tv_task_list:
                 break;

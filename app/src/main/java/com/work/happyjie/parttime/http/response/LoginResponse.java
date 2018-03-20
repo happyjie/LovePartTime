@@ -9,25 +9,24 @@ import com.work.happyjie.parttime.http.response.base.BaseResponse;
 
 public class LoginResponse extends BaseResponse{
 
-    private UserInfo userList;
-    private AdminInfo adminList;
+    private UserInfo user;
+    private AdminInfo admin;
 
-    public UserInfo getUserList() {
-        return userList;
+    public UserInfo getUser() {
+        return user;
     }
 
-    public void setUserList(UserInfo userList) {
-        this.userList = userList;
+    public void setUser(UserInfo user) {
+        this.user = user;
     }
 
-    public AdminInfo getAdminList() {
-        return adminList;
+    public AdminInfo getAdmin() {
+        return admin;
     }
 
-    public void setAdminList(AdminInfo adminList) {
-        this.adminList = adminList;
+    public void setAdmin(AdminInfo admin) {
+        this.admin = admin;
     }
-
 
     public static class AdminInfo{
 

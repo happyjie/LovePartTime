@@ -2,6 +2,9 @@ package com.work.happyjie.parttime.api;
 
 import com.work.happyjie.parttime.http.request.LoginRequestModel;
 import com.work.happyjie.parttime.http.response.GankIoDataResult;
+import com.work.happyjie.parttime.http.response.GetFinanceInfoResponse;
+import com.work.happyjie.parttime.http.response.GetHomeDataResponse;
+import com.work.happyjie.parttime.http.response.GetIncomingDetailResponse;
 import com.work.happyjie.parttime.http.response.JokeCommentResult;
 import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
 import com.work.happyjie.parttime.http.response.JokeListResult;
@@ -32,11 +35,43 @@ public interface ApiService {
 
     /**
      * 登陆
-     * @param request
+     * @param
      * @return
      */
-    @POST("/SpringMvc/LoginController/login_post.json")
-    Observable<LoginResponse> login(@Body LoginRequestModel request);
+//    @POST("SpringMvc/LoginController/login_post.json")
+//    Observable<LoginResponse> login(@Body LoginRequestModel request);
+
+
+    @POST("SpringMvc/LoginController/login_post.json")
+    Observable<LoginResponse> login(@Query("username") String userName, @Query("password") String password);
+
+
+    /**
+     * 查询首页数据
+     * @param userName
+     * @return
+     */
+    @POST("SpringMvc/IncomeController/income_post.json")
+    Observable<GetHomeDataResponse> getHomeData(@Query("username") String userName);
+
+    /**
+     * 查询收入明细
+     */
+    @POST("SpringMvc/IncomeController/queryIncomeDetail.json")
+    Observable<GetIncomingDetailResponse> getIncomingDetail(@Query("username") String userName, @Query("year") String year,
+                                                            @Query("month") String month, @Query("currPage") int curPage,
+                                                            @Query("pageSize") int pageSize);
+
+
+
+
+    /**
+     * 查询财务信息
+     */
+    @POST("SpringMvc/IncomeController/queryfinanceDetail.json")
+    Observable<GetFinanceInfoResponse> getFinanceInfo(@Query("username") String userName, @Query("year") String year,
+                                                      @Query("month") String month, @Query("currPage") int curPage,
+                                                      @Query("pageSize") int pageSize);
 
 
     /**
