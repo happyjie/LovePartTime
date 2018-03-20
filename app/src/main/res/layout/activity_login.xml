@@ -65,7 +65,7 @@
 
 
     <TextView
-        android:id="@+id/tv_login_yxj"
+        android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_password"

@@ -5,14 +5,20 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
+import com.lib.llj.utils.SharedPreferencesUtils;
 import com.work.happyjie.parttime.R;
+import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.consts.ConstantsImageUrl;
+import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivitySplashBinding;
+import com.work.happyjie.parttime.helper.LoginHelper;
+import com.work.happyjie.parttime.http.response.LoginResponse;
 
 import java.util.Random;
 
@@ -20,37 +26,43 @@ import java.util.Random;
  * Created by llj on 2017/12/7.
  */
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
 
-    private ActivitySplashBinding mBinding;
+    private boolean isLoginSuccess = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-        init();
+        setContentView(R.layout.activity_splash);
     }
 
 
-    private void init(){
+    @Override
+    protected void initView() {
         // 先显示默认图
-        mBinding.ivDefaultPic.setImageResource(R.drawable.img_splash_default);
+        mViewBinding.ivDefaultPic.setImageResource(R.drawable.img_splash_default);
 
         int i = new Random().nextInt(ConstantsImageUrl.TRANSITION_URLS.length);
         Glide.with(this)
                 .load(ConstantsImageUrl.TRANSITION_URLS[i])
                 .placeholder(R.drawable.img_splash_default)
                 .error(R.drawable.img_splash_default)
-                .into(mBinding.ivPic);
+                .into(mViewBinding.ivPic);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.transition_anim);
         animation.setAnimationListener(animationListener);
-        mBinding.ivDefaultPic.startAnimation(animation);
+        mViewBinding.ivDefaultPic.startAnimation(animation);
 
-        mBinding.ivDefaultPic.postDelayed(() ->gotoMainActivity(), 3500);
+//        mViewBinding.ivDefaultPic.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                gotoMainActivity();
+//            }
+//        }, 3000);
 
-        mBinding.tvJump.setOnClickListener(v -> gotoMainActivity());
+//        mViewBinding.tvJump.setOnClickListener(v -> gotoMainActivity());
     }
+
 
     /**
      * 动画监听
@@ -58,11 +70,28 @@ public class SplashActivity extends AppCompatActivity {
     private Animation.AnimationListener animationListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
+            String account = SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT);
+            String password = SharedPreferencesUtils.getString(PreferenceConsts.PASSWORD);
+            if(!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)){
+                LoginHelper.login(mCompositeDisposable, account, password, new LoginHelper.LoginCallBack() {
+                    @Override
+                    public void loginResult(boolean isSuccess, LoginResponse callBack) {
+                        isLoginSuccess = isSuccess;
+                        SharedPreferencesUtils.putBoolean(PreferenceConsts.LOGIN_STATUS, isLoginSuccess);
+                    }
+                });
+            }
         }
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            mBinding.ivDefaultPic.setVisibility(View.GONE);
+            if(isLoginSuccess){
+                gotoMainActivity();
+            } else {
+                gotoLoginActivity();
+            }
+
+//            mViewBinding.ivDefaultPic.setVisibility(View.GONE);
         }
 
         @Override
@@ -81,5 +110,12 @@ public class SplashActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
         finish();
         isGotoMainActivity = true;
+    }
+
+    private void gotoLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+        finish();
     }
 }

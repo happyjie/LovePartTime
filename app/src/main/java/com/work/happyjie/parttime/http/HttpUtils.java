@@ -15,6 +15,7 @@ public class HttpUtils {
     private final static String API_DOUBAN = "https://api.douban.com/";
     private final static String API_NEWS = "http://is.snssdk.com/api/news/";
     public final static String API_JOKE = "http://lf.snssdk.com/";
+    public final static String API_PART_TIME = "http://39.106.216.25:8080";
 
     private ApiService gankApiService;
     private ApiService musicApiService;
@@ -22,6 +23,7 @@ public class HttpUtils {
     private ApiService newsApiService;
     private ApiService jokeApiService;
     private ApiService jokeApiService2;
+    private ApiService partTimeService;
 
     private static HttpUtils instance;
 
@@ -101,5 +103,16 @@ public class HttpUtils {
             }
         }
         return jokeApiService2;
+    }
+
+    public ApiService getPartTimeApi(){
+        if(null == partTimeService){
+            synchronized (HttpUtils.class){
+                if(null == partTimeService){
+                    partTimeService = HttpClient.getInstance().getRetrofit(API_PART_TIME).create(ApiService.class);
+                }
+            }
+        }
+        return partTimeService;
     }
 }

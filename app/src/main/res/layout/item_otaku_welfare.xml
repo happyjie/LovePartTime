@@ -4,7 +4,7 @@
     <data>
         <variable
             name="bean"
-            type="com.work.happyjie.parttime.bean.GankIoDataResult.ResultsBean"/>
+            type="com.work.happyjie.parttime.http.response.GankIoDataResult.ResultsBean"/>
     </data>
 
     <ImageView

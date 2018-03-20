@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.work.happyjie.parttime.bean.JokeCommentResult.DataBean.RecentCommentsBean"/>
+            type="com.work.happyjie.parttime.http.response.JokeCommentResult.DataBean.RecentCommentsBean"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

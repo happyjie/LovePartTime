@@ -2,13 +2,15 @@ package com.work.happyjie.parttime.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.databinding.ActivityLoginBinding;
+import com.work.happyjie.parttime.helper.LoginHelper;
 
 /**
- * Created by asus on 2018-03-04 .
+ * Created by llj on 2018-03-04 .
  */
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
@@ -29,7 +31,14 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void initListener() {
-        super.initListener();
+        mViewBinding.btLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String account = mViewBinding.etAccount.getText().toString().trim();
+                String password = mViewBinding.etPassword.getText().toString().trim();
+                LoginHelper.login(mCompositeDisposable,account, password, null);
+            }
+        });
     }
 
     @Override

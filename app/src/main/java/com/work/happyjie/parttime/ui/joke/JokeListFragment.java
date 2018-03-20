@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.lib.llj.utils.SharedPreferencesUtils;
 import com.orhanobut.logger.Logger;
 import com.scwang.smartrefresh.header.PhoenixHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -12,16 +13,15 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseAdapter.OnItemClickListener;
 import com.work.happyjie.parttime.base.BaseFragment;
-import com.work.happyjie.parttime.bean.JokeContentTypeResult;
-import com.work.happyjie.parttime.bean.JokeListResult;
+import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
+import com.work.happyjie.parttime.http.response.JokeListResult;
 import com.work.happyjie.parttime.cache.UserCacheWrapper;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.FragmentJokeListBinding;
 import com.work.happyjie.parttime.http.RequestCallBack;
-import com.work.happyjie.parttime.model.GetJokeListRequestModel;
-import com.work.happyjie.parttime.model.JokeContentTypeRequestModel;
+import com.work.happyjie.parttime.http.request.GetJokeListRequestModel;
+import com.work.happyjie.parttime.http.request.JokeContentTypeRequestModel;
 import com.work.happyjie.parttime.ui.joke.adapter.JokeAdapter;
-import com.work.happyjie.parttime.utils.SharedPreferenceUtils;
 
 import java.util.List;
 
@@ -144,7 +144,7 @@ public class JokeListFragment extends BaseFragment<FragmentJokeListBinding>{
         }
 
         GetJokeListRequestModel model = new GetJokeListRequestModel(getContext(), contentTypeBean.getList_id(),
-                contentTypeBean.getUrl(), SharedPreferenceUtils.getLong(PreferenceConsts.JOKE_LAST_REQUEST_TIME, 0));
+                contentTypeBean.getUrl(), SharedPreferencesUtils.getInt(PreferenceConsts.JOKE_LAST_REQUEST_TIME));
 
         model.getData(new RequestCallBack<JokeListResult>() {
             @Override
@@ -157,7 +157,7 @@ public class JokeListFragment extends BaseFragment<FragmentJokeListBinding>{
                     } else {
                         mAdapter.addAll(obj.getDataBeanX().getData());
                     }
-                    SharedPreferenceUtils.putLong(PreferenceConsts.JOKE_LAST_REQUEST_TIME, obj.getDataBeanX().getMin_time());
+                    SharedPreferencesUtils.putInt(PreferenceConsts.JOKE_LAST_REQUEST_TIME, obj.getDataBeanX().getMin_time());
                     UserCacheWrapper.saveJokeListData(getContext(), obj);
                 }
             }

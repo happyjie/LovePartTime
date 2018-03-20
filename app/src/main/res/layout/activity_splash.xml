@@ -23,7 +23,8 @@
             android:gravity="center"
             android:text="跳过"
             android:textColor="#fff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/iv_default_pic"

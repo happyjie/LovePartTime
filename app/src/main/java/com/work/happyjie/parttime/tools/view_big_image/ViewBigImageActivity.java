@@ -27,9 +27,9 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.lib.llj.utils.ToastUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.consts.GlobalConsts;
-import com.work.happyjie.parttime.utils.ToastUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,17 +64,17 @@ public class ViewBigImageActivity extends FragmentActivity implements OnPageChan
 
     public static void startAction(Context context, ArrayList<ShowBigImageBean> list, int curImagePosition) {
         if (null == list || 0 == list.size()) {
-            ToastUtils.showToast("传图片列表不能为空");
+            ToastUtils.showShort("传图片列表不能为空");
             return;
         }
 
         if (curImagePosition < 0) {
-            ToastUtils.showToast("当前图片位置不能小于0");
+            ToastUtils.showShort("当前图片位置不能小于0");
             return;
         }
 
         if (curImagePosition >= list.size()) {
-            ToastUtils.showToast("当前图片位置不能大于图片总数");
+            ToastUtils.showShort("当前图片位置不能大于图片总数");
             return;
         }
 
@@ -166,13 +166,13 @@ public class ViewBigImageActivity extends FragmentActivity implements OnPageChan
             @Override
             public void onClick(View view) {
 
-                ToastUtils.showToast("开始下载图片");
+                ToastUtils.showShort("开始下载图片");
                 ShowBigImageBean bean = imageList.get(curImagePosition);
                 if (bean.getResId() > 0 && TextUtils.isEmpty(bean.getUrl())) {// app资源文件
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), bean.getResId());
                     if (bitmap != null) {
                         saveImageToGallery(ViewBigImageActivity.this, bitmap);
-                        ToastUtils.showToast("保存成功");
+                        ToastUtils.showShort("保存成功");
                     }
                 } else if (!TextUtils.isEmpty(bean.getUrl()) && bean.getUrl().startsWith("http")) {// 网络图片
                     final BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -188,7 +188,7 @@ public class ViewBigImageActivity extends FragmentActivity implements OnPageChan
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        ToastUtils.showToast("已保存至" + iamgeSavePath);
+                                        ToastUtils.showShort("已保存至" + iamgeSavePath);
                                     }
                                 });
                             }

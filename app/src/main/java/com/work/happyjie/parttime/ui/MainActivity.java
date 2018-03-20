@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.lib.llj.utils.SingleClickListener;
@@ -20,7 +19,6 @@ import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
-import com.work.happyjie.parttime.utils.ToastUtils;
 
 /**
  * Created by llj on 2017/12/7.
@@ -139,7 +137,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
                         break;
                     case R.id.menu_exit:
                         break;
-
                 }
 
                 if (v instanceof MenuItemView) {

@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseAdapter.BaseRecycleViewAdapter;
 import com.work.happyjie.parttime.base.BaseAdapter.BaseRecycleViewHolder;
-import com.work.happyjie.parttime.bean.GankIoDataResult;
+import com.work.happyjie.parttime.http.response.GankIoDataResult;
 import com.work.happyjie.parttime.databinding.ItemOtakuWelfareBinding;
 
 /**

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
+import com.lib.llj.utils.ToastUtils;
 import com.scwang.smartrefresh.header.PhoenixHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -12,15 +13,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseAdapter.OnItemClickListener;
 import com.work.happyjie.parttime.base.BaseFragment;
-import com.work.happyjie.parttime.bean.NewsDataResult;
+import com.work.happyjie.parttime.http.response.NewsDataResult;
 import com.work.happyjie.parttime.cache.UserCacheWrapper;
 import com.work.happyjie.parttime.databinding.FragmentClassificationNewsBinding;
-import com.work.happyjie.parttime.helper.RxTools;
+import com.lib.llj.helper.RxTools;
 import com.work.happyjie.parttime.http.RequestCallBack;
-import com.work.happyjie.parttime.model.NewsRequestModel;
+import com.work.happyjie.parttime.http.request.NewsRequestModel;
 import com.work.happyjie.parttime.tools.webview.WebViewActivity;
 import com.work.happyjie.parttime.ui.news.adapter.NewsAdapter;
-import com.work.happyjie.parttime.utils.ToastUtils;
 
 import java.util.List;
 
@@ -137,7 +137,7 @@ public class ClassificationNewsFragment extends BaseFragment<FragmentClassificat
                     if(1 == page){
                         showError();
                     } else {
-                        ToastUtils.showToast("数据异常");
+                        ToastUtils.showShort("数据异常");
                     }
                     return;
                 }

@@ -7,7 +7,7 @@
         <import type="android.view.View"/>-->
         <variable
             name="bean"
-            type="com.work.happyjie.parttime.bean.NewsDataResult.DataBean" />
+            type="com.work.happyjie.parttime.http.response.NewsDataResult.DataBean" />
     </data>
 
 

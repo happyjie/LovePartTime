@@ -4,21 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.lib.llj.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseAdapter.OnItemClickListener;
 import com.work.happyjie.parttime.base.BaseFragment;
-import com.work.happyjie.parttime.bean.GankIoDataResult;
+import com.work.happyjie.parttime.http.response.GankIoDataResult;
 import com.work.happyjie.parttime.cache.UserCacheWrapper;
 import com.work.happyjie.parttime.databinding.FragmentOtakuWelfareBinding;
 import com.work.happyjie.parttime.http.RequestCallBack;
-import com.work.happyjie.parttime.model.GetGankIoRequestModel;
+import com.work.happyjie.parttime.http.request.GetGankIoRequestModel;
 import com.work.happyjie.parttime.tools.view_big_image.ShowBigImageBean;
 import com.work.happyjie.parttime.tools.view_big_image.ViewBigImageActivity;
 import com.work.happyjie.parttime.ui.gank.adapter.OtakuWelfareAdapter;
-import com.work.happyjie.parttime.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +106,7 @@ public class OtakuWelfareFragment extends BaseFragment<FragmentOtakuWelfareBindi
                     if(1 == page){
                         showError();
                     } else {
-                        ToastUtils.showToast("数据异常");
+                        ToastUtils.showShort("数据异常");
                     }
                     return;
                 }

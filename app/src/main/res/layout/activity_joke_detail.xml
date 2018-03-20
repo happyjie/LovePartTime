@@ -7,7 +7,7 @@
 
         <variable
             name="group"
-            type="com.work.happyjie.parttime.bean.JokeListResult.DataBeanX.Data.Group" />
+            type="com.work.happyjie.parttime.http.response.JokeListResult.DataBeanX.Data.Group" />
     </data>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout

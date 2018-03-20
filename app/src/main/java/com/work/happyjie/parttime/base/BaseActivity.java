@@ -35,7 +35,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
     protected LinearLayout llLoading;
     protected LinearLayout llError;
     protected AnimationDrawable mAnimationDrawable;
-    private CompositeDisposable mCompositeDisposable;
+    protected CompositeDisposable mCompositeDisposable;
 
     protected DangerousPermissionUtils permissionUtil;
 

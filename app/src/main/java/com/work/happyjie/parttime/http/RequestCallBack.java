@@ -11,5 +11,5 @@ public interface RequestCallBack<T> {
 
     void onError(Throwable throwable);
 
-    void returnSubscription(Disposable subscription);
+    void returnSubscription(Disposable disposable);
 }

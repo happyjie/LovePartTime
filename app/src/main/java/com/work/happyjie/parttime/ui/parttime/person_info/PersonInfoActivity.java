@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.lib.llj.utils.SharedPreferencesUtils;
+import com.lib.llj.utils.ToastUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.bean.KeyValueItemBean;
+import com.work.happyjie.parttime.bean.UserInfo;
+import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityPersonInfoBinding;
+import com.work.happyjie.parttime.helper.UserInfoHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +39,10 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
         mViewBinding.recycleView.setLayoutManager(new LinearLayoutManager(this));
         mViewBinding.recycleView.setAdapter(mAdapter);
 
-        mAdapter.setDatas(generateTestData());
+        List<KeyValueItemBean> list = generateData();
+        if(null != list && list.size() > 0) {
+            mAdapter.setDatas(list);
+        }
     }
 
     @Override
@@ -42,7 +50,28 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
 
     }
 
-    private List<KeyValueItemBean> generateTestData(){
+    private List<KeyValueItemBean> generateData(){
+
+        UserInfo userInfo = UserInfoHelper.getInstance().getUserInfo();
+
+        if(null == userInfo){
+            ToastUtils.showShort("未获取到个人信息，请联系管理员处理");
+            return null;
+        }
+
+        List<KeyValueItemBean> list = new ArrayList<>();
+        list.add(new KeyValueItemBean("账号", SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT)));
+        list.add(new KeyValueItemBean("姓名", userInfo.getName()));
+        list.add(new KeyValueItemBean("性别", userInfo.getSex()));
+        list.add(new KeyValueItemBean("年龄", userInfo.getAge()));
+        list.add(new KeyValueItemBean("支付宝", userInfo.getPaynum()));
+        list.add(new KeyValueItemBean("联系方式", userInfo.getTelephone()));
+        list.add(new KeyValueItemBean("身份证", userInfo.getCardnum()));
+        list.add(new KeyValueItemBean("微信", userInfo.getChartnum()));
+        return list;
+    }
+
+    /*private List<KeyValueItemBean> generateTestData(){
         List<KeyValueItemBean> list = new ArrayList<>();
         list.add(new KeyValueItemBean("账号", "A0000001"));
         list.add(new KeyValueItemBean("姓名", "隔壁老王"));
@@ -53,5 +82,7 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
         list.add(new KeyValueItemBean("身份证", "32323219990101123X"));
         list.add(new KeyValueItemBean("微信", "wx789878"));
         return list;
-    }
+    }*/
+
+
 }

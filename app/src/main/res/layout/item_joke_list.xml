@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.work.happyjie.parttime.bean.JokeListResult.DataBeanX.Data" />
+            type="com.work.happyjie.parttime.http.response.JokeListResult.DataBeanX.Data" />
     </data>
 
     <LinearLayout

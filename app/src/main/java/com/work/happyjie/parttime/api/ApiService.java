@@ -1,14 +1,19 @@
 package com.work.happyjie.parttime.api;
 
-import com.work.happyjie.parttime.bean.GankIoDataResult;
-import com.work.happyjie.parttime.bean.JokeCommentResult;
-import com.work.happyjie.parttime.bean.JokeContentTypeResult;
-import com.work.happyjie.parttime.bean.JokeListResult;
-import com.work.happyjie.parttime.bean.NewsDataResult;
+import com.work.happyjie.parttime.http.request.LoginRequestModel;
+import com.work.happyjie.parttime.http.response.GankIoDataResult;
+import com.work.happyjie.parttime.http.response.JokeCommentResult;
+import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
+import com.work.happyjie.parttime.http.response.JokeListResult;
+import com.work.happyjie.parttime.http.response.LoginResponse;
+import com.work.happyjie.parttime.http.response.NewsDataResult;
 import com.work.happyjie.parttime.http.HttpUtils;
+import com.work.happyjie.parttime.http.response.base.BaseResponse;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -23,6 +28,16 @@ public interface ApiService {
 //    ApiService doubanApiService = HttpUtils.getInstance().getDoubanApiService();
     ApiService newsApiService = HttpUtils.getInstance().getNewsApi();
     ApiService jokeApiService = HttpUtils.getInstance().getJokeApi();
+    ApiService partTimeService = HttpUtils.getInstance().getPartTimeApi();
+
+    /**
+     * 登陆
+     * @param request
+     * @return
+     */
+    @POST("/SpringMvc/LoginController/login_post.json")
+    Observable<LoginResponse> login(@Body LoginRequestModel request);
+
 
     /**
      * 分类数据: http://gank.io/api/data/数据类型/每页数据量/第几页

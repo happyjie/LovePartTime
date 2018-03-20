@@ -15,11 +15,11 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
-import com.work.happyjie.parttime.bean.JokeCommentResult;
-import com.work.happyjie.parttime.bean.JokeListResult;
+import com.work.happyjie.parttime.http.response.JokeCommentResult;
+import com.work.happyjie.parttime.http.response.JokeListResult;
 import com.work.happyjie.parttime.databinding.ActivityJokeDetailBinding;
 import com.work.happyjie.parttime.http.RequestCallBack;
-import com.work.happyjie.parttime.model.JokeCommentRequestModel;
+import com.work.happyjie.parttime.http.request.JokeCommentRequestModel;
 import com.work.happyjie.parttime.ui.joke.adapter.JokeCommentAdapter;
 
 import io.reactivex.disposables.Disposable;

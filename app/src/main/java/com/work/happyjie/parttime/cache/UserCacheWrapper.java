@@ -3,10 +3,10 @@ package com.work.happyjie.parttime.cache;
 
 import android.content.Context;
 
-import com.work.happyjie.parttime.bean.GankIoDataResult;
-import com.work.happyjie.parttime.bean.JokeContentTypeResult;
-import com.work.happyjie.parttime.bean.JokeListResult;
-import com.work.happyjie.parttime.bean.NewsDataResult;
+import com.work.happyjie.parttime.http.response.GankIoDataResult;
+import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
+import com.work.happyjie.parttime.http.response.JokeListResult;
+import com.work.happyjie.parttime.http.response.NewsDataResult;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="group"
-            type="com.work.happyjie.parttime.bean.JokeListResult.DataBeanX.Data.Group" />
+            type="com.work.happyjie.parttime.http.response.JokeListResult.DataBeanX.Data.Group" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
