@@ -11,4 +11,9 @@
     <string name="PermissionSENSORS">运动传感器权限</string>
     <string name="PermissionSMS">短信获取权限</string>
     <string name="PermissionSTORAGE">内存卡读写权限</string>
+
+
+
+
+
 </resources>

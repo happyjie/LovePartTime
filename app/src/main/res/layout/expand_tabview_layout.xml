@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="46dp"
+    android:layout_weight="1"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/expand_tabview_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:textColor="@drawable/selector_expand_tab_view_title_text_color"
+            android:textSize="16sp"
+            tools:text="条件" />
+
+        <ImageView
+            android:id="@+id/expand_tabview_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/selector_expand_tab_view_arrow" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:src="@color/divide_line" />
+</LinearLayout>

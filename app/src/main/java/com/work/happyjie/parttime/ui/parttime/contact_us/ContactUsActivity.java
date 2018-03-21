@@ -9,6 +9,7 @@ import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.bean.KeyValueItemBean;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
+import com.work.happyjie.parttime.databinding.ActivityContactUsBinding;
 import com.work.happyjie.parttime.databinding.ActivityPersonInfoBinding;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoAdapter;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by llj on 2018/3/8.
  */
 
-public class ContactUsActivity extends BaseActivity<ActivityPersonInfoBinding> {
+public class ContactUsActivity extends BaseActivity<ActivityContactUsBinding> {
 
     private ContactUsAdapter mAdapter;
 
@@ -31,7 +32,9 @@ public class ContactUsActivity extends BaseActivity<ActivityPersonInfoBinding> {
 
     @Override
     protected void initView() {
-        setTitle("个人资料");
+        setTitle("联系我们");
+        setCenterTitleVisible(false);
+
         showContentView();
         mAdapter = new ContactUsAdapter();
         mViewBinding.recycleView.setLayoutManager(new LinearLayoutManager(this));

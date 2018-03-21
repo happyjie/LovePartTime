@@ -108,6 +108,9 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         mBaseBinding.toolBar.setNavigationOnClickListener(getToolBarLeftIconClickListener());
     }
 
+
+
+
     /**
      * 设置toolbar是否显示
      * @param visible
@@ -116,9 +119,19 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         mBaseBinding.toolBar.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
+    /**
+     * 设置是否显示居中标题
+     * @param visible
+     */
+    protected void setCenterTitleVisible(boolean visible){
+        mBaseBinding.tvTitle.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+    }
+
+
     protected boolean isShowBackButton(){
         return true;
     }
+
 
     /**
      * 显示标题栏左侧标题，默认是返回按钮

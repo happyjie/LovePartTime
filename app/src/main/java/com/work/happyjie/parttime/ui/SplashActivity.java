@@ -42,6 +42,9 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
 
     @Override
     protected void initView() {
+
+        setToolbarVisible(false);
+
         showContentView();
 
         // 先显示默认图

@@ -34,6 +34,7 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
     @Override
     protected void initView() {
         setTitle("个人资料");
+        setCenterTitleVisible(false);
         showContentView();
         mAdapter = new PersonInfoAdapter();
         mViewBinding.recycleView.setLayoutManager(new LinearLayoutManager(this));

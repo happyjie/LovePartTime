@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.lib.llj.utils.SharedPreferencesUtils;
@@ -20,9 +21,13 @@ import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
+import com.work.happyjie.parttime.http.request.AutoTaskRequestModel;
+import com.work.happyjie.parttime.http.request.DrawCashRequestModel;
 import com.work.happyjie.parttime.http.request.GetFinanceInfoRequestModel;
 import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
 import com.work.happyjie.parttime.http.request.GetIncomingDetailRequestModel;
+import com.work.happyjie.parttime.http.request.GetTaskListRequestModel;
+import com.work.happyjie.parttime.ui.parttime.contact_us.ContactUsActivity;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
 
 /**
@@ -75,8 +80,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
 
         mViewBinding.setClickListener(this);
 
-        mViewBinding.switchHome.setOnCheckedChangeListener((buttonView, isChecked)
-                -> mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED));
+        mViewBinding.switchHome.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AutoTaskRequestModel model = new AutoTaskRequestModel();
+                model.commit(null);
+                mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED);
+
+            }
+        });
     }
 
 
@@ -186,23 +198,25 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         switch (v.getId()) {
             case R.id.tv_incoming_detail:
 //                startActivity(new Intent(this, LoginActivity.class));
-
                 GetIncomingDetailRequestModel model = new GetIncomingDetailRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
-                        "2018", "3",30);
+                        "2018", "3", 1);
                 model.getData(null);
-
                 break;
             case R.id.tv_finance_info:
                 GetFinanceInfoRequestModel model2 = new GetFinanceInfoRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
-                        "2018", "3",30);
+                        "2018", "3", 1);
                 model2.getData(null);
-
                 break;
             case R.id.tv_task_list:
+                GetTaskListRequestModel getTaskListRequestModel = new GetTaskListRequestModel(1, 1);
+                getTaskListRequestModel.getTaskList(null);
                 break;
             case R.id.tv_read_me:
+                DrawCashRequestModel drawCashRequestModel = new DrawCashRequestModel(10.0f);
+                drawCashRequestModel.commit(null);
                 break;
             case R.id.tv_contact_us:
+                startActivity(new Intent(this, ContactUsActivity.class));
                 break;
             case R.id.tv_person_info:
                 startActivity(new Intent(this, PersonInfoActivity.class));

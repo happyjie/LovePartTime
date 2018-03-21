@@ -5,6 +5,7 @@ import com.work.happyjie.parttime.http.response.GankIoDataResult;
 import com.work.happyjie.parttime.http.response.GetFinanceInfoResponse;
 import com.work.happyjie.parttime.http.response.GetHomeDataResponse;
 import com.work.happyjie.parttime.http.response.GetIncomingDetailResponse;
+import com.work.happyjie.parttime.http.response.GetTaskListResponse;
 import com.work.happyjie.parttime.http.response.JokeCommentResult;
 import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
 import com.work.happyjie.parttime.http.response.JokeListResult;
@@ -72,6 +73,34 @@ public interface ApiService {
     Observable<GetFinanceInfoResponse> getFinanceInfo(@Query("username") String userName, @Query("year") String year,
                                                       @Query("month") String month, @Query("currPage") int curPage,
                                                       @Query("pageSize") int pageSize);
+
+
+    /**
+     * 提现
+     * @param userName
+     * @param drawcashnum
+     * @return
+     */
+    @POST("SpringMvc/IncomeController/drawcash.json")
+    Observable<BaseResponse> drawCash(@Query("username") String userName, @Query("drawcashnum") float drawcashnum);
+
+
+    /**
+     * 自动刷单
+     * @param userName
+     * @return
+     */
+    @POST("SpringMvc/TaskController/autoTask.json")
+    Observable<BaseResponse> autoTask(@Query("username") String userName);
+
+
+    /**
+     * 任务列表
+     * @param userName
+     * @return
+     */
+    @POST("SpringMvc/TaskController/queryTask.json")
+    Observable<GetTaskListResponse> getTaskList(@Query("username") String userName);
 
 
     /**

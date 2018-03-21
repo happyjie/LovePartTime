@@ -22,7 +22,9 @@ public abstract class BaseRequestModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        callBack.onError(e);
+                        if(null != callBack) {
+                            callBack.onError(e);
+                        }
                     }
 
                     @Override
@@ -31,13 +33,17 @@ public abstract class BaseRequestModel {
 
                     @Override
                     public void onSubscribe(Disposable d) {
-                        callBack.returnSubscription(d);
+                        if(null != callBack) {
+                            callBack.returnSubscription(d);
+                        }
                     }
 
                     @Override
                     public void onNext(T t) {
                         Logger.d("onNext()");
-                        callBack.onSuccess(t);
+                        if(null != callBack) {
+                            callBack.onSuccess(t);
+                        }
                     }
                 });
     }
