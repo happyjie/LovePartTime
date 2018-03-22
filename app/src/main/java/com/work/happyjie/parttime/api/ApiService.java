@@ -63,9 +63,6 @@ public interface ApiService {
                                                          @Query("month") String month, @Query("currPage") int curPage,
                                                          @Query("pageSize") int pageSize);
 
-
-
-
     /**
      * 查询财务信息
      */
@@ -100,7 +97,8 @@ public interface ApiService {
      * @return
      */
     @POST("SpringMvc/TaskController/queryTask.json")
-    Observable<GetTaskListResponse> getTaskList(@Query("username") String userName);
+    Observable<GetTaskListResponse> getTaskList(@Query("username") String userName, @Query("finishstate") int finishstate,
+                                                @Query("currPage") int currPage, @Query("pageSize") int pageSize);
 
 
     /**

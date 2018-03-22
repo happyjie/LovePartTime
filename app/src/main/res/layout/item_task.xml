@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="item"
+            type="com.work.happyjie.parttime.http.response.GetTaskListResponse.TaskItem" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/textBigColor63"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{item.taskname}"
+            tools:text="任务：" />
+
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            style="@style/textNormalColor66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{item.taskdesc}"
+            tools:text="任务描述" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            style="@style/textSmallColor66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text='@{"截止日期: " + item.enddate}'
+            tools:text="截止日期：" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_receive_task"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_5dp_gray"
+                style="@style/textNormalColorWhite"
+                android:gravity="center"
+                android:text="接任务"/>
+
+            <TextView
+                android:id="@+id/tv_share_task"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/selector_btn_5dp_primary_color"
+                style="@style/textNormalColorWhite"
+                android:gravity="center"
+                android:text="分享到微信"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

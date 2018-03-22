@@ -12,5 +12,5 @@ import com.work.happyjie.parttime.application.DailyInformationApplication;
 public interface GlobalConsts {
     String PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-    String BIG_IMAGE_SAVE_PATH = PATH + "/" + DailyInformationApplication.getInstance().getString(R.string.app_name);
+    String BIG_IMAGE_SAVE_PATH = PATH + "/" + DailyInformationApplication.getInstance().getString(R.string.app_name_english);
 }

@@ -37,7 +37,7 @@ public class NewsDetailActivity extends BaseActivity<ActivityNewsDetailBinding> 
 
         setContentView(R.layout.activity_news_detail);
 
-        setTitle(getString(R.string.app_name_chinese));
+        setTitle(getString(R.string.app_name_english));
 
         mUrl = getIntent().getStringExtra(PARAM_URL);
 

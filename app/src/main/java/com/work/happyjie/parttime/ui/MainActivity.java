@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.lib.llj.utils.SharedPreferencesUtils;
@@ -21,15 +20,13 @@ import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
-import com.work.happyjie.parttime.http.request.AutoTaskRequestModel;
 import com.work.happyjie.parttime.http.request.DrawCashRequestModel;
 import com.work.happyjie.parttime.http.request.GetFinanceInfoRequestModel;
 import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
-import com.work.happyjie.parttime.http.request.GetIncomingDetailRequestModel;
-import com.work.happyjie.parttime.http.request.GetTaskListRequestModel;
 import com.work.happyjie.parttime.ui.parttime.contact_us.ContactUsActivity;
 import com.work.happyjie.parttime.ui.parttime.incom_detail.IncomDetailActivity;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
+import com.work.happyjie.parttime.ui.parttime.task_list.TaskListActivity;
 
 /**
  * Created by llj on 2017/12/7.
@@ -107,7 +104,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
      * 否则，侧滑菜单无法覆盖住标题栏，会很丑
      */
     private void initHomeTitleBar() {
-        mViewBinding.toolBar.tvHomeTitle.setText(getString(R.string.app_name_chinese));
+        mViewBinding.toolBar.tvHomeTitle.setText(getString(R.string.app_name_english));
 
         setSupportActionBar(mViewBinding.toolBar.toolbarHome);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -205,8 +202,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
                 model2.getData(null);
                 break;
             case R.id.tv_task_list:
-                GetTaskListRequestModel getTaskListRequestModel = new GetTaskListRequestModel(1, 1);
-                getTaskListRequestModel.getTaskList(null);
+//                GetTaskListRequestModel getTaskListRequestModel = new GetTaskListRequestModel(1, 1);
+//                getTaskListRequestModel.getTaskList(null);
+                startActivity(new Intent(this, TaskListActivity.class));
                 break;
             case R.id.tv_read_me:
                 DrawCashRequestModel drawCashRequestModel = new DrawCashRequestModel(10.0f);

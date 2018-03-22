@@ -26,7 +26,7 @@ public class GetTaskListRequestModel extends BaseRequestModel {
     }
 
     public void getTaskList(RequestCallBack<GetTaskListResponse> callBack){
-        request(ApiService.partTimeService.getTaskList(username),
+        request(ApiService.partTimeService.getTaskList(username, finishstate, currPage, pageSize),
                 callBack);
     }
 }
