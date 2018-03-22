@@ -28,6 +28,7 @@ import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
 import com.work.happyjie.parttime.http.request.GetIncomingDetailRequestModel;
 import com.work.happyjie.parttime.http.request.GetTaskListRequestModel;
 import com.work.happyjie.parttime.ui.parttime.contact_us.ContactUsActivity;
+import com.work.happyjie.parttime.ui.parttime.incom_detail.IncomDetailActivity;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
 
 /**
@@ -80,15 +81,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
 
         mViewBinding.setClickListener(this);
 
-        mViewBinding.switchHome.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AutoTaskRequestModel model = new AutoTaskRequestModel();
-                model.commit(null);
-                mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED);
-
-            }
-        });
+        mViewBinding.switchHome.setOnCheckedChangeListener((buttonView, isChecked)
+                -> mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED));
     }
 
 
@@ -198,9 +192,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         switch (v.getId()) {
             case R.id.tv_incoming_detail:
 //                startActivity(new Intent(this, LoginActivity.class));
-                GetIncomingDetailRequestModel model = new GetIncomingDetailRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
-                        "2018", "3", 1);
-                model.getData(null);
+
+//                GetIncomingDetailRequestModel model = new GetIncomingDetailRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
+//                        "2018", "3",30);
+//                model.getData(null);
+
+                startActivity(new Intent(this, IncomDetailActivity.class));
                 break;
             case R.id.tv_finance_info:
                 GetFinanceInfoRequestModel model2 = new GetFinanceInfoRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),

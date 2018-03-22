@@ -4,7 +4,6 @@ import com.work.happyjie.parttime.api.ApiService;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.base.BaseRequestModel;
 import com.work.happyjie.parttime.http.response.GetFinanceInfoResponse;
-import com.work.happyjie.parttime.http.response.GetIncomingDetailResponse;
 
 /**
  * Created by llj on 2018/3/20.

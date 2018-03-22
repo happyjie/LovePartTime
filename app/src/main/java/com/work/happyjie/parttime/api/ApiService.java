@@ -4,7 +4,7 @@ import com.work.happyjie.parttime.http.request.LoginRequestModel;
 import com.work.happyjie.parttime.http.response.GankIoDataResult;
 import com.work.happyjie.parttime.http.response.GetFinanceInfoResponse;
 import com.work.happyjie.parttime.http.response.GetHomeDataResponse;
-import com.work.happyjie.parttime.http.response.GetIncomingDetailResponse;
+import com.work.happyjie.parttime.http.response.GetIncomDetailResponse;
 import com.work.happyjie.parttime.http.response.GetTaskListResponse;
 import com.work.happyjie.parttime.http.response.JokeCommentResult;
 import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
@@ -59,9 +59,9 @@ public interface ApiService {
      * 查询收入明细
      */
     @POST("SpringMvc/IncomeController/queryIncomeDetail.json")
-    Observable<GetIncomingDetailResponse> getIncomingDetail(@Query("username") String userName, @Query("year") String year,
-                                                            @Query("month") String month, @Query("currPage") int curPage,
-                                                            @Query("pageSize") int pageSize);
+    Observable<GetIncomDetailResponse> getIncomingDetail(@Query("username") String userName, @Query("year") String year,
+                                                         @Query("month") String month, @Query("currPage") int curPage,
+                                                         @Query("pageSize") int pageSize);
 
 
 

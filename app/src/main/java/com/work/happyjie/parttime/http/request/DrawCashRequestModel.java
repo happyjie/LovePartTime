@@ -5,7 +5,6 @@ import com.work.happyjie.parttime.api.ApiService;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.base.BaseRequestModel;
-import com.work.happyjie.parttime.http.response.GetIncomingDetailResponse;
 import com.work.happyjie.parttime.http.response.base.BaseResponse;
 
 /**

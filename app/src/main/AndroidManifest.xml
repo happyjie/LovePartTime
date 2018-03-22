@@ -43,6 +43,10 @@
         <activity android:name=".ui.parttime.person_info.PersonInfoActivity"
             android:screenOrientation="portrait"/>
 
+
+        <activity android:name=".ui.parttime.incom_detail.IncomDetailActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".ui.parttime.contact_us.ContactUsActivity"
             android:screenOrientation="portrait"/>
 
