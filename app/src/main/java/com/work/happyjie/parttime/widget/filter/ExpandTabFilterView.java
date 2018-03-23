@@ -51,13 +51,22 @@ public class ExpandTabFilterView extends RelativeLayout implements ViewBaseActio
         mListView.setAdapter(adapter);
         adapter.setOnItemClickListener(new TextAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                if (mOnSelectListener != null) {
+            public void onItemClick(View view, int position) {if (mOnSelectListener != null) {
                     showText = items.get(position);
                     mOnSelectListener.getValue(Integer.valueOf(itemsVaule.get(position)), items.get(position));
                 }
             }
         });
+    }
+
+    /**
+     * 强制设置选中项位置，不通知选中事件
+     * @param selectPosition
+     */
+    public void setSelectedItemNotNotify(int selectPosition){
+        if(null != adapter){
+            adapter.setSelectedPositionNoNotify(selectPosition);
+        }
     }
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {

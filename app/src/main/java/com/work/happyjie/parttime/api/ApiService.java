@@ -59,8 +59,8 @@ public interface ApiService {
      * 查询收入明细
      */
     @POST("SpringMvc/IncomeController/queryIncomeDetail.json")
-    Observable<GetIncomDetailResponse> getIncomingDetail(@Query("username") String userName, @Query("year") String year,
-                                                         @Query("month") String month, @Query("currPage") int curPage,
+    Observable<GetIncomDetailResponse> getIncomingDetail(@Query("username") String userName, @Query("year") int year,
+                                                         @Query("month") int month, @Query("currPage") int curPage,
                                                          @Query("pageSize") int pageSize);
 
     /**

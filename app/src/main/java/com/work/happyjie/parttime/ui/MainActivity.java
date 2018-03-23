@@ -24,7 +24,7 @@ import com.work.happyjie.parttime.http.request.DrawCashRequestModel;
 import com.work.happyjie.parttime.http.request.GetFinanceInfoRequestModel;
 import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
 import com.work.happyjie.parttime.ui.parttime.contact_us.ContactUsActivity;
-import com.work.happyjie.parttime.ui.parttime.incom_detail.IncomDetailActivity;
+import com.work.happyjie.parttime.ui.parttime.incom_detail.IncomeDetailActivity;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
 import com.work.happyjie.parttime.ui.parttime.task_list.TaskListActivity;
 
@@ -194,7 +194,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
 //                        "2018", "3",30);
 //                model.getData(null);
 
-                startActivity(new Intent(this, IncomDetailActivity.class));
+                startActivity(new Intent(this, IncomeDetailActivity.class));
                 break;
             case R.id.tv_finance_info:
                 GetFinanceInfoRequestModel model2 = new GetFinanceInfoRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),

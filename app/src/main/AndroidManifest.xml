@@ -44,7 +44,7 @@
             android:screenOrientation="portrait"/>
 
 
-        <activity android:name=".ui.parttime.incom_detail.IncomDetailActivity"
+        <activity android:name=".ui.parttime.incom_detail.IncomeDetailActivity"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.parttime.contact_us.ContactUsActivity"

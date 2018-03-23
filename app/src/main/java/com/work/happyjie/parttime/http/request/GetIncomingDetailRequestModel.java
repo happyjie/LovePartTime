@@ -14,12 +14,12 @@ import com.work.happyjie.parttime.http.response.GetIncomDetailResponse;
 public class GetIncomingDetailRequestModel extends BaseRequestModel {
     private String username;
 
-    private String year; //：年份
-    private String month; //：月
+    private int year; //：年份
+    private int month; //：月
     private int currPage; //：当前页数
     private int pageSize = 20; //:每页显示的记录数"
 
-    public GetIncomingDetailRequestModel(String year, String month, int currPage) {
+    public GetIncomingDetailRequestModel(int year, int month, int currPage) {
         this.username = SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT);
         this.year = year;
         this.month = month;
