@@ -43,8 +43,8 @@ public class TaskListActivity extends BaseActivity<ActivityTaskListBinding> {
         List<Fragment> fragmentList = new ArrayList<>();
         List<String> titleList = new ArrayList<>();
 
-        String titles[] = new String[]{"未领取","未完成","已完成","已过期","全部"};
-        int types[] = new int[]{1, 2, 3, 4, 0};
+        String titles[] = new String[]{"未领取","未完成","已完成","已过期"/*,"全部"*/};
+        int types[] = new int[]{1, 2, 3, 4/*, 0*/};
 
         for(int i = 0; i < titles.length; i++){
             titleList.add(titles[i]);
@@ -54,8 +54,8 @@ public class TaskListActivity extends BaseActivity<ActivityTaskListBinding> {
         MyFragmentPagerAdapter fragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
         mViewBinding.vpTasks.setAdapter(fragmentPagerAdapter);
         mViewBinding.vpTasks.setCurrentItem(0);
-        mViewBinding.vpTasks.setOffscreenPageLimit(5);
+        mViewBinding.vpTasks.setOffscreenPageLimit(titles.length);
         mViewBinding.tableLayout.setupWithViewPager(mViewBinding.vpTasks);
-        mViewBinding.tableLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mViewBinding.tableLayout.setTabMode(TabLayout.MODE_FIXED);
     }
 }

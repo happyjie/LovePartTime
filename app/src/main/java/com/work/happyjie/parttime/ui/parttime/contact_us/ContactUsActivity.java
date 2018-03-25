@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.lib.llj.utils.SharedPreferencesUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
-import com.work.happyjie.parttime.bean.KeyValueItemBean;
+import com.work.happyjie.parttime.bean.AutoLinkKeyValueInfoBean;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityContactUsBinding;
 import com.work.happyjie.parttime.databinding.ActivityPersonInfoBinding;
@@ -48,12 +48,12 @@ public class ContactUsActivity extends BaseActivity<ActivityContactUsBinding> {
 
     }
 
-    private List<KeyValueItemBean> generateData(){
-        List<KeyValueItemBean> list = new ArrayList<>();
-        list.add(new KeyValueItemBean("联系方式", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_PHONE)));
-        list.add(new KeyValueItemBean("微信", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_WECHAT)));
-        list.add(new KeyValueItemBean("QQ", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_QQ)));
-        list.add(new KeyValueItemBean("联系地址", SharedPreferencesUtils.getString(PreferenceConsts.COMPANY_ADDRESS)));
+    private List<AutoLinkKeyValueInfoBean> generateData(){
+        List<AutoLinkKeyValueInfoBean> list = new ArrayList<>();
+        list.add(new AutoLinkKeyValueInfoBean("联系方式", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_PHONE), true));
+        list.add(new AutoLinkKeyValueInfoBean("微信", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_WECHAT)));
+        list.add(new AutoLinkKeyValueInfoBean("QQ", SharedPreferencesUtils.getString(PreferenceConsts.CUSTOMER_QQ)));
+        list.add(new AutoLinkKeyValueInfoBean("联系地址", SharedPreferencesUtils.getString(PreferenceConsts.COMPANY_ADDRESS)));
         return list;
     }
 }

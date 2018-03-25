@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.home.MainActivity">
 
         <!--此处在NestedScrollView外面包一层的原因：沉浸式状态栏会在DrawerLayout的第一个child添加一个
         与状态栏高度一样的view,若不包一层，则会在NestedScrollView里面添加view，违背了scrollView只能有
@@ -153,7 +153,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="¥ 88"
+                            tools:text="¥ 88"
                             android:textColor="@color/color63"
                             android:textSize="@dimen/textSizeHuge" />
 
@@ -162,14 +162,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="总收益:" />
+                            android:text="总收入:" />
 
                         <TextView
                             android:id="@+id/tv_total_money"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="¥ 8888"
+                            tools:text="¥ 8888"
                             android:textColor="@color/color63"
                             android:textSize="@dimen/textSizeHuge" />
                     </LinearLayout>

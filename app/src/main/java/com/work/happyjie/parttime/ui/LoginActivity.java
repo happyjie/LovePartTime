@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.lib.llj.utils.SharedPreferencesUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
+import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityLoginBinding;
 import com.work.happyjie.parttime.helper.LoginHelper;
 import com.work.happyjie.parttime.http.response.LoginResponse;
+import com.work.happyjie.parttime.ui.home.MainActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -34,6 +37,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         showContentView();
         setCenterTitle("登录");
 
+        mViewBinding.etAccount.setText(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT));
+        mViewBinding.etPassword.setText(SharedPreferencesUtils.getString(PreferenceConsts.PASSWORD));
     }
 
     @Override

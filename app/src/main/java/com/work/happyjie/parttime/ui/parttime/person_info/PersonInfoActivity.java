@@ -8,7 +8,8 @@ import com.lib.llj.utils.SharedPreferencesUtils;
 import com.lib.llj.utils.ToastUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
-import com.work.happyjie.parttime.bean.KeyValueItemBean;
+import com.work.happyjie.parttime.bean.AutoLinkKeyValueInfoBean;
+import com.work.happyjie.parttime.bean.AutoLinkKeyValueInfoBean;
 import com.work.happyjie.parttime.bean.UserInfo;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityPersonInfoBinding;
@@ -40,7 +41,7 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
         mViewBinding.recycleView.setLayoutManager(new LinearLayoutManager(this));
         mViewBinding.recycleView.setAdapter(mAdapter);
 
-        List<KeyValueItemBean> list = generateData();
+        List<AutoLinkKeyValueInfoBean> list = generateData();
         if(null != list && list.size() > 0) {
             mAdapter.setDatas(list);
         }
@@ -51,7 +52,7 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
 
     }
 
-    private List<KeyValueItemBean> generateData(){
+    private List<AutoLinkKeyValueInfoBean> generateData(){
 
         UserInfo userInfo = UserInfoHelper.getInstance().getUserInfo();
 
@@ -60,28 +61,28 @@ public class PersonInfoActivity extends BaseActivity<ActivityPersonInfoBinding> 
             return null;
         }
 
-        List<KeyValueItemBean> list = new ArrayList<>();
-        list.add(new KeyValueItemBean("账号", SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT)));
-        list.add(new KeyValueItemBean("姓名", userInfo.getName()));
-        list.add(new KeyValueItemBean("性别", userInfo.getSex()));
-        list.add(new KeyValueItemBean("年龄", userInfo.getAge()));
-        list.add(new KeyValueItemBean("支付宝", userInfo.getPaynum()));
-        list.add(new KeyValueItemBean("联系方式", userInfo.getTelephone()));
-        list.add(new KeyValueItemBean("身份证", userInfo.getCardnum()));
-        list.add(new KeyValueItemBean("微信", userInfo.getChartnum()));
+        List<AutoLinkKeyValueInfoBean> list = new ArrayList<>();
+        list.add(new AutoLinkKeyValueInfoBean("账号", SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT)));
+        list.add(new AutoLinkKeyValueInfoBean("姓名", userInfo.getName()));
+        list.add(new AutoLinkKeyValueInfoBean("性别", userInfo.getSex()));
+        list.add(new AutoLinkKeyValueInfoBean("年龄", userInfo.getAge()));
+        list.add(new AutoLinkKeyValueInfoBean("支付宝", userInfo.getPaynum()));
+        list.add(new AutoLinkKeyValueInfoBean("联系方式", userInfo.getTelephone(), true));
+        list.add(new AutoLinkKeyValueInfoBean("身份证", userInfo.getCardnum()));
+        list.add(new AutoLinkKeyValueInfoBean("微信", userInfo.getChartnum()));
         return list;
     }
 
-    /*private List<KeyValueItemBean> generateTestData(){
-        List<KeyValueItemBean> list = new ArrayList<>();
-        list.add(new KeyValueItemBean("账号", "A0000001"));
-        list.add(new KeyValueItemBean("姓名", "隔壁老王"));
-        list.add(new KeyValueItemBean("性别", "男"));
-        list.add(new KeyValueItemBean("年龄", "35岁"));
-        list.add(new KeyValueItemBean("支付宝", "18888888888"));
-        list.add(new KeyValueItemBean("联系方式", "18888888888"));
-        list.add(new KeyValueItemBean("身份证", "32323219990101123X"));
-        list.add(new KeyValueItemBean("微信", "wx789878"));
+    /*private List<AutoLinkKeyValueInfoBean> generateTestData(){
+        List<AutoLinkKeyValueInfoBean> list = new ArrayList<>();
+        list.add(new AutoLinkKeyValueInfoBean("账号", "A0000001"));
+        list.add(new AutoLinkKeyValueInfoBean("姓名", "隔壁老王"));
+        list.add(new AutoLinkKeyValueInfoBean("性别", "男"));
+        list.add(new AutoLinkKeyValueInfoBean("年龄", "35岁"));
+        list.add(new AutoLinkKeyValueInfoBean("支付宝", "18888888888"));
+        list.add(new AutoLinkKeyValueInfoBean("联系方式", "18888888888"));
+        list.add(new AutoLinkKeyValueInfoBean("身份证", "32323219990101123X"));
+        list.add(new AutoLinkKeyValueInfoBean("微信", "wx789878"));
         return list;
     }*/
 

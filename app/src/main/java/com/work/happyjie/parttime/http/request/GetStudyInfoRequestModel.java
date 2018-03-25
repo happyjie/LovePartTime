@@ -6,25 +6,22 @@ import com.work.happyjie.parttime.api.ApiService;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.base.BaseRequestModel;
+import com.work.happyjie.parttime.http.response.GetStudyInfoResponse;
 import com.work.happyjie.parttime.http.response.base.BaseResponse;
 
 /**
  * Created by llj on 2018/3/20.
  */
 
-public class AutoTaskRequestModel extends BaseRequestModel {
+public class GetStudyInfoRequestModel extends BaseRequestModel {
     private String username;
-    private long param1;
-    private String param2;
 
-    public AutoTaskRequestModel() {
+    public GetStudyInfoRequestModel() {
         this.username = SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT);
-        param1 = System.currentTimeMillis();
-        param2 = EnCoderUtils.stringToMD5(username + "_" + param1);
     }
 
-    public void commit(RequestCallBack<BaseResponse> callBack){
-        request(ApiService.partTimeService.autoTask(username, param1, param2),
+    public void getInfo(RequestCallBack<GetStudyInfoResponse> callBack){
+        request(ApiService.partTimeService.getStudyInfo(username),
                 callBack);
     }
 }

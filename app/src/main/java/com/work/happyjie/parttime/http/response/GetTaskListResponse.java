@@ -80,9 +80,9 @@ public class GetTaskListResponse extends BaseResponse {
         private String taskid; //18//任务ID
         private String enddate; //2018-03-22 12:03:40//任务结束时间
         private String money; //88//奖金
-        private String count; //88//任务转发个数
-        private String finishcount; //0//完成转发个数
-        private String tasktype; //线下//任务类型（转发/线下）
+        private int count; //88//任务转发个数
+        private int finishcount; //0//完成转发个数
+        private int tasktype; //线下//任务类型（转发/线下）
         private String taskname; //我叫测试//任务名称
         private String taskdesc; //我叫测试//任务描述
         private String tasklink; //我叫测试//任务链接地址
@@ -120,27 +120,27 @@ public class GetTaskListResponse extends BaseResponse {
             this.money = money;
         }
 
-        public String getCount() {
+        public int getCount() {
             return count;
         }
 
-        public void setCount(String count) {
+        public void setCount(int count) {
             this.count = count;
         }
 
-        public String getFinishcount() {
+        public int getFinishcount() {
             return finishcount;
         }
 
-        public void setFinishcount(String finishcount) {
+        public void setFinishcount(int finishcount) {
             this.finishcount = finishcount;
         }
 
-        public String getTasktype() {
+        public int getTasktype() {
             return tasktype;
         }
 
-        public void setTasktype(String tasktype) {
+        public void setTasktype(int tasktype) {
             this.tasktype = tasktype;
         }
 

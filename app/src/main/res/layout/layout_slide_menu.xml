@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -51,11 +52,12 @@
                             android:src="@drawable/avatar" />
 
                         <TextView
+                            android:id="@+id/tv_userName"
                             style="@style/textSmallColorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="会飞的闪电狮子" />
+                            tools:text="会飞的闪电狮子" />
 
                     </LinearLayout>
 
@@ -79,7 +81,8 @@
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
                     android:onClick="@{menuClickListener.onClick}"
-                    app:menu_title="问题反馈"/>
+                    app:menu_title="问题反馈"
+                    android:visibility="gone"/>
 
                 <com.lib.llj.widget.MenuItemView
                     android:id="@+id/menu_app_recommend"
@@ -89,7 +92,8 @@
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
                     android:onClick="@{menuClickListener.onClick}"
-                    app:menu_title="应用推荐"/>
+                    app:menu_title="应用推荐"
+                    android:visibility="gone"/>
 
                 <View style="@style/horizontal_divide_line_2px"/>
 
@@ -101,7 +105,8 @@
                     app:icon_width="25dp"
                     app:is_show_next_arrow="true"
                     android:onClick="@{menuClickListener.onClick}"
-                    app:menu_title="关于我们"/>
+                    app:menu_title="关于我们"
+                    android:visibility="gone"/>
 
                 <com.lib.llj.widget.MenuItemView
                     android:id="@+id/menu_exit"

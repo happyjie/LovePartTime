@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.lib.llj.utils.ToastUtils;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.databinding.ActivityIncomeDetailBinding;
@@ -46,7 +48,7 @@ public class IncomeDetailActivity extends BaseActivity<ActivityIncomeDetailBindi
     @Override
     protected void initView() {
         setCenterTitle("收入明细");
-        showLoading();
+        showInitLoadingView();
 
         mViewBinding.smartRefreshLayout.setRefreshHeader(new ClassicsHeader(this));
 
@@ -56,13 +58,26 @@ public class IncomeDetailActivity extends BaseActivity<ActivityIncomeDetailBindi
 
         initTabViewData();
 
-        getData(mSelectYear, mSelectMonth, mcurPage);
+        getData(mSelectYear, mSelectMonth, false);
     }
 
     @Override
     protected void initListener() {
         yearFilter.setOnSelectListener((id, showText) -> onRefreshData(id, yearFilter, showText));
         monthFilter.setOnSelectListener((id, showText) -> onRefreshData(id, monthFilter, showText));
+        mViewBinding.smartRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                mcurPage++;
+                getData(mSelectYear, mSelectMonth, false);
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mcurPage = 1;
+                getData(mSelectYear, mSelectMonth, false);
+            }
+        });
     }
 
     /**
@@ -153,15 +168,22 @@ public class IncomeDetailActivity extends BaseActivity<ActivityIncomeDetailBindi
         return cal.get(Calendar.MONTH) + 1;
     }
 
-    private void getData(int year, int month, int page){
+    private void getData(int year, int month, boolean isShowLoading){
+        if(isShowLoading) showLoading();
         GetIncomingDetailRequestModel model;
         model = new GetIncomingDetailRequestModel(year, month, mcurPage);
         model.getData(new RequestCallBack<GetIncomDetailResponse>() {
             @Override
             public void onSuccess(GetIncomDetailResponse result) {
-
-                if(null == result && 1 == page){
-                    showError();
+                dismissLoading();
+                mViewBinding.smartRefreshLayout.finishLoadmore();
+                mViewBinding.smartRefreshLayout.finishRefresh();
+                if(null == result && null == result.getLists()){
+                    if(1 == mcurPage) {
+                        showError();
+                    } else {
+                        mcurPage--;
+                    }
                     return;
                 }
 
@@ -174,14 +196,17 @@ public class IncomeDetailActivity extends BaseActivity<ActivityIncomeDetailBindi
                 if(null != result.getLists()){
                     mAdapter.addAll(result.getLists());
                 }
-
             }
 
             @Override
             public void onError(Throwable throwable) {
-                if(1 == page){
+                dismissLoading();
+                mViewBinding.smartRefreshLayout.finishLoadmore();
+                mViewBinding.smartRefreshLayout.finishRefresh();
+                if(1 == mcurPage){
                     showError();
                 } else {
+                    mcurPage--;
                     ToastUtils.showShort(throwable.getMessage());
                 }
 
@@ -222,6 +247,6 @@ public class IncomeDetailActivity extends BaseActivity<ActivityIncomeDetailBindi
         }
 
         mcurPage = 1;
-        getData(mSelectYear, mSelectMonth, mcurPage);
+        getData(mSelectYear, mSelectMonth, true);
     }
 }

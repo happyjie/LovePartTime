@@ -1,5 +1,6 @@
 package com.work.happyjie.parttime.http.request;
 
+import com.lib.llj.utils.EnCoderUtils;
 import com.lib.llj.utils.SharedPreferencesUtils;
 import com.work.happyjie.parttime.api.ApiService;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
@@ -23,6 +24,7 @@ public class GetTaskListRequestModel extends BaseRequestModel {
         this.username = SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT);
         this.finishstate = finishstate;
         this.currPage = currPage;
+
     }
 
     public void getTaskList(RequestCallBack<GetTaskListResponse> callBack){

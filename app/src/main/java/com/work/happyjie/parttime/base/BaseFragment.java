@@ -1,6 +1,7 @@
 package com.work.happyjie.parttime.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.drawable.AnimationDrawable;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.lib.llj.utils.SingleClickListener;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.databinding.FragmentBaseBinding;
+import com.work.happyjie.parttime.widget.LoadingDialog;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -35,11 +37,13 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
     // fragment是否显示了
     protected boolean mIsVisible = false;
     protected Activity mActivity;
+    private LoadingDialog loadingDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
+        loadingDialog = new LoadingDialog(mActivity, R.style.dialogstyle);
     }
 
     @Nullable
@@ -65,7 +69,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
         llError.setOnClickListener(new SingleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
-                showLoading();
+                showInitLoadingView();
                 onRefresh();
             }
         });
@@ -125,7 +129,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
     /**
      * 加载动画
      */
-    protected void showLoading() {
+    protected void showInitLoadingView() {
         if(null == mAnimationDrawable) {
             mAnimationDrawable = (AnimationDrawable) mBaseBinding.imgProgress.getDrawable();
         }
@@ -176,6 +180,35 @@ public abstract class BaseFragment<VDB extends ViewDataBinding> extends Fragment
             mViewBinding.getRoot().setVisibility(View.GONE);
         }
     }
+
+    public void showLoading() {
+        if (!isAccessable()) return;
+        if (loadingDialog == null) {
+            this.loadingDialog = new LoadingDialog(mActivity, R.style.dialogstyle);
+        }
+        loadingDialog.show();
+    }
+
+    public void dismissLoading() {
+        if (!isAccessable()) return;
+        if (loadingDialog != null && !getActivity().isFinishing() && !isDetached() && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
+
+
+    /**
+     * 当前fragment是否可访问
+     * @return
+     */
+    protected boolean isAccessable(){
+        if (null == BaseFragment.this || isDetached()
+                || null == getActivity() || getActivity().isFinishing()){
+            return  false;
+        }
+        return true;
+    }
+
 
     protected <T extends View> T getView(int id) {
         return (T) getView().findViewById(id);

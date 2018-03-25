@@ -28,8 +28,7 @@
     <!--内涵段子里面的粉丝字体颜色-->
     <color name="text_joke_pink_color">#ff4070</color>
 
-
+    <!--下拉选择框过滤器-->
     <color name="choose_eara_item_press_color">#f4f4f4</color>
-
     <color name="popup_main_background">#b0000000</color>
 </resources>

@@ -18,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name=".ui.home.AutoTaskService"/>
+
         <activity android:name="com.work.happyjie.parttime.ui.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ViewBigPicTheme">
@@ -27,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.work.happyjie.parttime.ui.MainActivity"
+        <activity android:name="com.work.happyjie.parttime.ui.home.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:label="主界面"/>
@@ -52,6 +54,14 @@
 
         <activity android:name=".ui.parttime.task_list.TaskListActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.parttime.finance.FinanceDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.parttime.study.StudyActivity"
+            android:screenOrientation="portrait"/>
+
+
 
         <!--<activity android:name="com.work.happyjie.parttime.ui.news.NewsDetailActivity"-->
             <!--android:screenOrientation="portrait"-->

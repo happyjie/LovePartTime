@@ -33,4 +33,5 @@ public class DailyInformationApplication extends Application {
         //设置日志打印的tag
         Logger.init(TAG);
     }
+
 }

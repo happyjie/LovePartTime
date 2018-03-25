@@ -1,12 +1,9 @@
 package com.work.happyjie.parttime.ui;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -19,6 +16,7 @@ import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivitySplashBinding;
 import com.work.happyjie.parttime.helper.LoginHelper;
 import com.work.happyjie.parttime.http.response.LoginResponse;
+import com.work.happyjie.parttime.ui.home.MainActivity;
 
 import java.util.Random;
 
@@ -78,6 +76,9 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
     private Animation.AnimationListener animationListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
+            boolean isLogin = SharedPreferencesUtils.getBoolean(PreferenceConsts.LOGIN_STATUS);
+            if(!isLogin) return;
+
             String account = SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT);
             String password = SharedPreferencesUtils.getString(PreferenceConsts.PASSWORD);
             if(!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)){

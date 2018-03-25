@@ -1,6 +1,8 @@
 package com.work.happyjie.parttime.base;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.drawable.AnimationDrawable;
@@ -12,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -20,6 +23,7 @@ import com.lib.llj.utils.SingleClickListener;
 import com.lib.llj.utils.StatusBarUtil;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.databinding.ActivityBaseBinding;
+import com.work.happyjie.parttime.widget.LoadingDialog;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -38,6 +42,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
     protected CompositeDisposable mCompositeDisposable;
 
     protected DangerousPermissionUtils permissionUtil;
+    protected LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         permissionUtil = new DangerousPermissionUtils(this);
         permissionUtil.checkDangerousPermissions(
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE});
+
+        loadingDialog = new LoadingDialog(this, R.style.dialogstyle);
     }
 
     @Override
@@ -73,7 +80,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
         llError.setOnClickListener(new SingleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
-                showLoading();
+                showInitLoadingView();
                 onRefresh();
             }
         });
@@ -107,9 +114,6 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
 
         mBaseBinding.toolBar.setNavigationOnClickListener(getToolBarLeftIconClickListener());
     }
-
-
-
 
     /**
      * 设置toolbar是否显示
@@ -176,7 +180,7 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
     /**
      * 加载动画
      */
-    protected void showLoading() {
+    protected void showInitLoadingView() {
         if(null == mAnimationDrawable) {
             mAnimationDrawable = (AnimationDrawable) mBaseBinding.imgProgress.getDrawable();
         }
@@ -227,6 +231,20 @@ public class BaseActivity<VDB extends ViewDataBinding> extends AppCompatActivity
             mViewBinding.getRoot().setVisibility(View.GONE);
         }
     }
+
+    protected void showLoading() {
+        if (loadingDialog == null) {
+            this.loadingDialog = new LoadingDialog(this, R.style.dialogstyle);
+        }
+        loadingDialog.show();
+    }
+
+    protected void dismissLoading() {
+        if (loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
+
 
     protected <V extends View> V getView(@IdRes int id){
         return (V) findViewById(id);

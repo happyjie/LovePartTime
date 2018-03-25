@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -69,7 +70,19 @@ public class KeyValueItemView extends RelativeLayout {
         tvValue.setText(value);
         tvValue.setTextColor(valueTextColor);
         tvValue.setTextSize(TypedValue.COMPLEX_UNIT_PX, valueTextSize);
+    }
 
+
+    /**
+     * 设置autoLink
+     * @param enable
+     */
+    public void setAutoLink(boolean enable){
+        if(enable) {
+            tvValue.setAutoLinkMask(Linkify.PHONE_NUMBERS | Linkify.EMAIL_ADDRESSES | Linkify.WEB_URLS);
+        } else {
+            tvValue.setAutoLinkMask(0);
+        }
     }
 
     public void setKey(String key){

@@ -5,6 +5,7 @@ import com.work.happyjie.parttime.http.response.GankIoDataResult;
 import com.work.happyjie.parttime.http.response.GetFinanceInfoResponse;
 import com.work.happyjie.parttime.http.response.GetHomeDataResponse;
 import com.work.happyjie.parttime.http.response.GetIncomDetailResponse;
+import com.work.happyjie.parttime.http.response.GetStudyInfoResponse;
 import com.work.happyjie.parttime.http.response.GetTaskListResponse;
 import com.work.happyjie.parttime.http.response.JokeCommentResult;
 import com.work.happyjie.parttime.http.response.JokeContentTypeResult;
@@ -44,8 +45,8 @@ public interface ApiService {
 
 
     @POST("SpringMvc/LoginController/login_post.json")
-    Observable<LoginResponse> login(@Query("username") String userName, @Query("password") String password);
-
+    Observable<LoginResponse> login(@Query("username") String userName, @Query("password") String password,
+                                    @Query("versionName") String versionName);
 
     /**
      * 查询首页数据
@@ -64,12 +65,12 @@ public interface ApiService {
                                                          @Query("pageSize") int pageSize);
 
     /**
-     * 查询财务信息
+     * 查询财务明细
      */
     @POST("SpringMvc/IncomeController/queryfinanceDetail.json")
-    Observable<GetFinanceInfoResponse> getFinanceInfo(@Query("username") String userName, @Query("year") String year,
-                                                      @Query("month") String month, @Query("currPage") int curPage,
-                                                      @Query("pageSize") int pageSize);
+    Observable<GetFinanceInfoResponse> getFinanceInfo(@Query("username") String userName,/* @Query("year") int year,
+                                                         @Query("month") int month, */@Query("currPage") int curPage,
+                                                         @Query("pageSize") int pageSize);
 
 
     /**
@@ -88,8 +89,16 @@ public interface ApiService {
      * @return
      */
     @POST("SpringMvc/TaskController/autoTask.json")
-    Observable<BaseResponse> autoTask(@Query("username") String userName);
+    Observable<BaseResponse> autoTask(@Query("username") String userName, @Query("param1") long param1,
+                                      @Query("param2") String param2);
 
+    /**
+     * 新手教学
+     * @param userName
+     * @return
+     */
+    @POST("SpringMvc/LoginController/teach.json")
+    Observable<GetStudyInfoResponse> getStudyInfo(@Query("username") String userName);
 
     /**
      * 任务列表
@@ -100,6 +109,26 @@ public interface ApiService {
     Observable<GetTaskListResponse> getTaskList(@Query("username") String userName, @Query("finishstate") int finishstate,
                                                 @Query("currPage") int currPage, @Query("pageSize") int pageSize);
 
+
+    /**
+     * 分享任务成功后统计数据
+     * @param userName
+     * @param taskId
+     * @return
+     */
+    @POST("SpringMvc/TaskController/transmit.json")
+    Observable<BaseResponse> shareTaskSuccess(@Query("username") String userName, @Query("taskid") String taskId,
+                                              @Query("param1") long param1, @Query("param2") String param2);
+
+
+    /**
+     * 任务领取
+     * @param userName
+     * @param taskId
+     * @return
+     */
+    @POST("SpringMvc/TaskController/getTask.json")
+    Observable<BaseResponse> receiveTask(@Query("username") String userName, @Query("taskid") String taskId);
 
     /**
      * 分类数据: http://gank.io/api/data/数据类型/每页数据量/第几页

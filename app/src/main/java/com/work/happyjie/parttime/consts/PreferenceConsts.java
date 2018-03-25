@@ -36,6 +36,15 @@ public interface PreferenceConsts {
      */
     String USER_INFO = "userInfo";
 
+    /**
+     * 自动刷单状态
+     */
+    String AUTO_TASK_STATUS = "autoTaskStatus";
+
+    /**
+     * 上次自动刷单的时间
+     */
+    String LAST_AUTO_TASK_TIME = "last_auto_task_time";
 
     /**
      * 客服电话

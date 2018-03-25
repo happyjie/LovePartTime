@@ -1,5 +1,7 @@
 package com.work.happyjie.parttime.helper;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.lib.llj.utils.SharedPreferencesUtils;
@@ -9,6 +11,7 @@ import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.LoginRequestModel;
 import com.work.happyjie.parttime.http.response.LoginResponse;
+import com.work.happyjie.parttime.ui.LoginActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -88,6 +91,22 @@ public class LoginHelper {
         });
     }
 
+
+    public static void ExitLogin(Activity activity){
+        SharedPreferencesUtils.putBoolean(PreferenceConsts.LOGIN_STATUS, false);
+
+        //保存联系我们的相关信息
+        SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_PHONE, "");
+        SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_QQ, "");
+        SharedPreferencesUtils.putString(PreferenceConsts.CUSTOMER_WECHAT, "");
+        SharedPreferencesUtils.putString(PreferenceConsts.COMPANY_ADDRESS, "");
+
+        //保存用户详细信息
+        UserInfoHelper.getInstance().saveUserInfo(null);
+
+        activity.startActivity(new Intent(activity, LoginActivity.class));
+        activity.finish();
+    }
 
 
     public interface LoginCallBack{

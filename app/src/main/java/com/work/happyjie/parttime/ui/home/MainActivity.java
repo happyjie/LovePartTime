@@ -1,32 +1,41 @@
-package com.work.happyjie.parttime.ui;
+package com.work.happyjie.parttime.ui.home;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.CompoundButton;
 
 import com.lib.llj.utils.SharedPreferencesUtils;
 import com.lib.llj.utils.SingleClickListener;
 import com.lib.llj.utils.StatusBarUtil;
-import com.lib.llj.widget.MenuItemView;
+import com.lib.llj.utils.ToastUtils;
 import com.work.happyjie.parttime.R;
 import com.work.happyjie.parttime.base.BaseActivity;
 import com.work.happyjie.parttime.consts.PreferenceConsts;
 import com.work.happyjie.parttime.databinding.ActivityMainBinding;
 import com.work.happyjie.parttime.databinding.LayoutSlideMenuBinding;
-import com.work.happyjie.parttime.http.request.DrawCashRequestModel;
-import com.work.happyjie.parttime.http.request.GetFinanceInfoRequestModel;
+import com.work.happyjie.parttime.helper.LoginHelper;
+import com.work.happyjie.parttime.helper.UserInfoHelper;
+import com.work.happyjie.parttime.http.RequestCallBack;
 import com.work.happyjie.parttime.http.request.GetHomeDataRequestModel;
+import com.work.happyjie.parttime.http.response.GetHomeDataResponse;
 import com.work.happyjie.parttime.ui.parttime.contact_us.ContactUsActivity;
+import com.work.happyjie.parttime.ui.parttime.finance.FinanceDetailActivity;
 import com.work.happyjie.parttime.ui.parttime.incom_detail.IncomeDetailActivity;
 import com.work.happyjie.parttime.ui.parttime.person_info.PersonInfoActivity;
+import com.work.happyjie.parttime.ui.parttime.study.StudyActivity;
 import com.work.happyjie.parttime.ui.parttime.task_list.TaskListActivity;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by llj on 2017/12/7.
@@ -41,10 +50,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     private String AUTO_WORK_OPEN = "自动刷单功能已开启";
     private String AUTO_WORK_CLOSED = "自动刷单功能已关闭";
 
+    private boolean mIsServiceBond = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(SharedPreferencesUtils.getBoolean(PreferenceConsts.AUTO_TASK_STATUS)) {
+            doBindService();
+        }
     }
 
     @Override
@@ -60,11 +74,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         StatusBarUtil.setColorNoTranslucentForDrawerLayout(MainActivity.this, drawerLayout,
                 getResources().getColor(R.color.colorTheme));
 
-
-        GetHomeDataRequestModel model = new GetHomeDataRequestModel(
-                SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT));
-        model.getHomeData(null);
+        mViewBinding.switchHome.setChecked(SharedPreferencesUtils.getBoolean(PreferenceConsts.AUTO_TASK_STATUS));
     }
+
 
     @Override
     protected void initListener() {
@@ -78,8 +90,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
 
         mViewBinding.setClickListener(this);
 
-        mViewBinding.switchHome.setOnCheckedChangeListener((buttonView, isChecked)
-                -> mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED));
+        mViewBinding.switchHome.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferencesUtils.putBoolean(PreferenceConsts.AUTO_TASK_STATUS, isChecked);
+                mViewBinding.tvSwitchContent.setText(isChecked ? AUTO_WORK_OPEN : AUTO_WORK_CLOSED);
+
+                if(isChecked){
+                    doBindService();
+                } else {
+                    doUnbindService();
+                }
+            }
+        });
     }
 
 
@@ -104,7 +127,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
      * 否则，侧滑菜单无法覆盖住标题栏，会很丑
      */
     private void initHomeTitleBar() {
-        mViewBinding.toolBar.tvHomeTitle.setText(getString(R.string.app_name_english));
+        mViewBinding.toolBar.tvHomeTitle.setText(getString(R.string.app_name));
 
         setSupportActionBar(mViewBinding.toolBar.toolbarHome);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -149,15 +172,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
                     case R.id.menu_about_us:
                         break;
                     case R.id.menu_exit:
+                        LoginHelper.ExitLogin(MainActivity.this);
                         break;
-                }
-
-                if (v instanceof MenuItemView) {
-                    Toast.makeText(MainActivity.this, ((MenuItemView) v).getMenuTitle(), Toast.LENGTH_SHORT).show();
                 }
             }, 50);
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getHomeData();
+    }
 
 
     @Override
@@ -188,27 +214,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_incoming_detail:
-//                startActivity(new Intent(this, LoginActivity.class));
-
-//                GetIncomingDetailRequestModel model = new GetIncomingDetailRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
-//                        "2018", "3",30);
-//                model.getData(null);
-
-                startActivity(new Intent(this, IncomeDetailActivity.class));
                 break;
             case R.id.tv_finance_info:
-                GetFinanceInfoRequestModel model2 = new GetFinanceInfoRequestModel(SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT),
-                        "2018", "3", 1);
-                model2.getData(null);
+                startActivity(new Intent(this, FinanceDetailActivity.class));
                 break;
             case R.id.tv_task_list:
-//                GetTaskListRequestModel getTaskListRequestModel = new GetTaskListRequestModel(1, 1);
-//                getTaskListRequestModel.getTaskList(null);
                 startActivity(new Intent(this, TaskListActivity.class));
                 break;
             case R.id.tv_read_me:
-                DrawCashRequestModel drawCashRequestModel = new DrawCashRequestModel(10.0f);
-                drawCashRequestModel.commit(null);
+                startActivity(new Intent(this, StudyActivity.class));
                 break;
             case R.id.tv_contact_us:
                 startActivity(new Intent(this, ContactUsActivity.class));
@@ -216,6 +230,69 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
             case R.id.tv_person_info:
                 startActivity(new Intent(this, PersonInfoActivity.class));
                 break;
+        }
+    }
+
+
+    private void getHomeData(){
+        GetHomeDataRequestModel model = new GetHomeDataRequestModel(
+                SharedPreferencesUtils.getString(PreferenceConsts.ACCOUNT));
+        model.getHomeData(new RequestCallBack<GetHomeDataResponse>() {
+            @Override
+            public void onSuccess(GetHomeDataResponse result) {
+                if (null == result){
+                    ToastUtils.showShort("获取首页数据失败");
+                    return;
+                }
+
+                mViewBinding.tvTotalMoney.setText(result.getTotalincome());
+                mViewBinding.tvTodayMoney.setText(result.getTodayincome());
+
+                slideMenuBinding.tvUserName.setText(UserInfoHelper.getInstance().getUserInfo().getName());
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void returnSubscription(Disposable disposable) {
+                addSubscription(disposable);
+            }
+        });
+    }
+
+    ServiceConnection conn=new ServiceConnection(){
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+
+    };
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        doUnbindService();
+    }
+
+    void doBindService() {
+        Intent intent=new Intent(MainActivity.this, AutoTaskService.class);
+        bindService(intent, conn, BIND_AUTO_CREATE);
+        mIsServiceBond = true;
+    }
+
+
+    void doUnbindService() {
+        if (mIsServiceBond) {
+            unbindService(conn);
+            mIsServiceBond = false;
         }
     }
 }
