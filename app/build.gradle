@@ -65,4 +65,7 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
 
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    //微信开放平台的sdk
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

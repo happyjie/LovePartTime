@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/shape_bg_white_circle_rectangle_normal"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:paddingTop="20dp">
+
+    <ImageView
+        android:id="@+id/iv_top_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        style="@style/textNormalColor63"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/textSmallColor66"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text=""/>
+
+    <View style="@style/horizontal_divide_line_2px"/>
+
+    <LinearLayout
+        android:id="@+id/ll_btn_area"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bg_white"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <View
+            android:id="@+id/btn_divide_line"
+            style="@style/vertical_divide_line_2px"/>
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bg_white"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="取消"
+            android:textColor="@color/colorPrimary"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

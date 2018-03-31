@@ -10,6 +10,9 @@ import com.work.happyjie.parttime.application.DailyInformationApplication;
  */
 
 public interface GlobalConsts {
+
+    String WECHAT_APP_ID= "wx888888";
+
     String PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
 
     String BIG_IMAGE_SAVE_PATH = PATH + "/" + DailyInformationApplication.getInstance().getString(R.string.app_name_english);
