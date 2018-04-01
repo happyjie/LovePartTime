@@ -36,8 +36,8 @@ public class DailyInformationApplication extends Application {
 
         HttpClient.getInstance().init(getApplicationContext(), BuildConfig.DEBUG);
 
-        wxApi = WXAPIFactory.createWXAPI(this, GlobalConsts.WECHAT_APP_ID, true);
-        wxApi.registerApp(GlobalConsts.WECHAT_APP_ID);
+//        wxApi = WXAPIFactory.createWXAPI(this, GlobalConsts.WECHAT_APP_ID, true);
+//        wxApi.registerApp(GlobalConsts.WECHAT_APP_ID);
 
         //设置日志打印的tag
         Logger.init(TAG);

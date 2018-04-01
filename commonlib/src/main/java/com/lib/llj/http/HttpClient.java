@@ -2,6 +2,7 @@ package com.lib.llj.http;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lib.llj.utils.NetworkUtils;
 
@@ -118,8 +119,10 @@ public class HttpClient {
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            Log.i("llj", "NoSuchAlgorithmException");
         } catch (KeyManagementException e) {
             e.printStackTrace();
+            Log.i("llj", "KeyManagementException");
         }
         return okBuilder.build();
     }

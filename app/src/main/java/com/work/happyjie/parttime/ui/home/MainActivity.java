@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -59,6 +60,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         if(SharedPreferencesUtils.getBoolean(PreferenceConsts.AUTO_TASK_STATUS)) {
             doBindService();
         }
+
+        Log.i("llj", "MainActivity-->onCreate()");
     }
 
     @Override
@@ -214,6 +217,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_incoming_detail:
+                startActivity(new Intent(this, IncomeDetailActivity.class));
                 break;
             case R.id.tv_finance_info:
                 startActivity(new Intent(this, FinanceDetailActivity.class));

@@ -27,6 +27,7 @@ public class UserInfoHelper {
      */
     public void saveUserInfo(UserInfo userInfo){
         SharedPreferencesUtils.putString(PreferenceConsts.USER_INFO, GsonUtil.bean2json(userInfo));
+        this.info = null;
     }
 
     /**

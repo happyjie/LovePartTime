@@ -54,6 +54,11 @@ public class LoginHelper {
                     return;
                 }
 
+                if(!result.isSuccess()){
+                    ToastUtils.showShort(result.getErrorMsg());
+                    return;
+                }
+
                 //保存登陆状态、账号、密码
                 SharedPreferencesUtils.putString(PreferenceConsts.ACCOUNT, account);
                 SharedPreferencesUtils.putString(PreferenceConsts.PASSWORD, password);

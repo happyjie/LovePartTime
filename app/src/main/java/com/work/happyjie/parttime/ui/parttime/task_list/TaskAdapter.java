@@ -53,8 +53,8 @@ public class TaskAdapter extends BaseRecycleViewAdapter<GetTaskListResponse.Task
         @Override
         protected void onBindViewHolder(GetTaskListResponse.TaskItem object, int position) {
             mViewBinding.setItem(object);
-            mViewBinding.tvFinishedIcon.setVisibility(object.getCount() >= 0
-                    && object.getFinishcount() >= object.getCount() ? View.VISIBLE : View.INVISIBLE);
+//            mViewBinding.tvFinishedIcon.setVisibility(object.getCount() >= 0
+//                    && object.getFinishcount() >= object.getCount() ? View.VISIBLE : View.INVISIBLE);
 
             if (1 == object.getTasktype()) {  //分享任务
                 mViewBinding.tvShareTask.setBackgroundResource(R.drawable.selector_btn_5dp_primary_color);
@@ -62,8 +62,8 @@ public class TaskAdapter extends BaseRecycleViewAdapter<GetTaskListResponse.Task
                     @Override
                     public void onClick(View v) {
                         //分享
-//                        shareTask(object.getTaskid());
-                        shareTaskToWechat(object);
+                        shareTask(object.getTaskid());
+//                        shareTaskToWechat(object);
                     }
                 });
                 mViewBinding.tvReceiveTask.setBackgroundResource(R.drawable.shape_5dp_gray_normal);
